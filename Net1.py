@@ -528,6 +528,7 @@ for epoch in range(10):
     p.append(PSNR)
     print(PSNR)
     del PSNR,n_test,temp_HR_2,temp_LR_2
+    torch.save(net1.state_dict(), 'real_net1.pt')
 print('Finished Training phase1')
 
 #next using L2, and adam:
@@ -570,6 +571,7 @@ for epoch in range(100):
     p.append(PSNR)
     print(PSNR)
     del PSNR,n_test,temp_HR_2,temp_LR_2
+    torch.save(net1.state_dict(), 'real_net1.pt')
 print('Finished Training phase1')
 
 torch.save(net1.state_dict(), 'real_net1.pt')
