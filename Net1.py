@@ -522,7 +522,7 @@ for epoch in range(20):
             HR_test=HR_test[:,0:x,0:y].to(device)
             LR_test=LR_test[:,:,0:x,0:y].to(device)
             outputs=net1(LR_test).data.squeeze()
-            PSNR+=psnr(outputs,HR_test)
+            PSNR+=psnr(outputs.cpu(),HR_test.cpu())
             del HR_test,LR_test,outputs
     PSNR=PSNR/n_test
     p.append(PSNR)
@@ -564,7 +564,7 @@ for epoch in range(100):
             HR_test=HR_test[:,0:x,0:y].to(device)
             LR_test=LR_test[:,:,0:x,0:y].to(device)
             outputs=net1(LR_test).data.squeeze()
-            PSNR+=psnr(outputs,HR_test)
+            PSNR+=psnr(outputs.cpu(),HR_test.cpu())
             del HR_test,LR_test,outputs
     PSNR=PSNR/n_test
     p.append(PSNR)
