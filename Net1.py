@@ -33,7 +33,7 @@ def generator():
     #given:
     HR_URL='2_HR'
     LR_URL='2_LR'
-    batch_size=64
+    batch_size=32
     image_size=101
     channel=3
     #genereting:
@@ -476,8 +476,8 @@ class Net1(nn.Module):
 #        init.orthogonal_(self.RB_20_1d1.weight)
 #        init.orthogonal_(self.RB_20_1d2.weight)
         
-        init.orthogonal_(self.end_RB.weight, init.calculate_gain('relu'))
-        init.orthogonal_(self.toR.weight, init.calculate_gain('relu'))
+        init.orthogonal_(self.end_RB.weight)
+        init.orthogonal_(self.toR.weight)
         
         
 net1=Net1()
@@ -491,7 +491,7 @@ p=[]
 #first using L1, and adadelta:
 criterion = nn.L1Loss()
 optimizer=torch.optim.Adadelta(net1.parameters(), lr=1.0, rho=0.9, eps=1e-06, weight_decay=0)
-for epoch in range(20):
+for epoch in range(10):
     running_loss=0.0
     for i in range(100):
         HR,LR=generator()[0].to(device),generator()[1].to(device)
