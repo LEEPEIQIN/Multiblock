@@ -247,7 +247,7 @@ plt.xlabel('epoch')
 plt.ylabel('PSNR')
 plt.show
 ##saving and loading:
-torch.save(net1.state_dict(), '/home/lee/Desktop/python/sillyman/real_net1.pt')
+torch.save(net1.state_dict(), 'real_net1.pt')
 #net1= Net1()
 #net1.load_state_dict(torch.load('/home/lee/Desktop/python/sillyman/real_net1.pt'))
 #net1.eval()
