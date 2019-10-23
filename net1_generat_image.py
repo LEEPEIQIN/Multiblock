@@ -13,7 +13,7 @@ import torch.nn.functional as F
 import torch.nn.init as init
 import math
 import os
-
+from os.path import dirname, abspath
 
 class Net1(nn.Module):
     def __init__(self):
@@ -458,6 +458,32 @@ with torch.no_grad():
         LR_after=LR_after.cpu()
         LR_after = transforms.ToPILImage()(LR_after)
         LR_after.save("2_LR_afternet1"+str(i+1)+".png","PNG")
+        
+        
+##
+d = dirname(abspath(__file__))
+os.chdir(d)
+        
+LR_URL='2_LR_test'
+
+LR_set=torchvision.datasets.ImageFolder(root=LR_URL,transform=transforms.ToTensor())
+LR_loader=torch.utils.data.DataLoader(LR_set,batch_size=1,shuffle=False,num_workers=0)
+LR_loader=iter(LR_loader)
+
+os.mkdir('2_LR_test_afternet1')
+os.chdir('2_LR_test_afternet1')
+os.mkdir('2')
+os.chdir('2')
+
+
+
+with torch.no_grad():
+    for i in len(LR_set):
+        LR=LR_loader.next()[0].to(device)
+        LR_after=net1(LR).data.squeeze()
+        LR_after=LR_after.cpu()
+        LR_after = transforms.ToPILImage()(LR_after)
+        LR_after.save("2_LR_test_afternet1"+str(i+1)+".png","PNG")
         
         
     
