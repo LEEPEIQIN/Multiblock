@@ -525,7 +525,6 @@ for epoch in range(10):
             PSNR+=psnr(outputs.cpu(),HR_test)
             del HR_test,LR_test,outputs
     PSNR=PSNR/n_test
-    p.append(PSNR)
     print(PSNR)
     del PSNR,n_test,temp_HR_2,temp_LR_2
     torch.save(net1.state_dict(), 'real_net1.pt')
@@ -570,7 +569,6 @@ for epoch in range(100):
             PSNR+=psnr(outputs.cpu(),HR_test)
             del HR_test,LR_test,outputs
     PSNR=PSNR/n_test
-    p.append(PSNR)
     print(PSNR)
     del PSNR,n_test,temp_HR_2,temp_LR_2
     torch.save(net1.state_dict(), 'real_net1.pt')
