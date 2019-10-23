@@ -34,7 +34,7 @@ def generator():
     HR_URL='2_HR'
     LR_URL='2_LR'
     batch_size=32
-    image_size=101
+    image_size=121
     channel=3
     #genereting:
     HR_set=torchvision.datasets.ImageFolder(root=HR_URL)
@@ -125,56 +125,56 @@ class Net1(nn.Module):
         self.RB_10_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
         self.RB_10_1d1 = nn.Conv1d(64,16,1,1)
         self.RB_10_1d2 = nn.Conv1d(16,64,1,1)
-#         #RB_11:
-#        self.RB_11_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_11_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_11_1d1 = nn.Conv1d(64,16,1,1)
-#        self.RB_11_1d2 = nn.Conv1d(16,64,1,1)
-#        #RB_12:
-#        self.RB_12_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_12_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_12_1d1 = nn.Conv1d(64,16,1,1)
-#        self.RB_12_1d2 = nn.Conv1d(16,64,1,1)
-#        #RB_13:
-#        self.RB_13_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_13_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_13_1d1 = nn.Conv1d(64,16,1,1)
-#        self.RB_13_1d2 = nn.Conv1d(16,64,1,1)
-#        #RB_14:
-#        self.RB_14_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_14_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_14_1d1 = nn.Conv1d(64,16,1,1)
-#        self.RB_14_1d2 = nn.Conv1d(16,64,1,1)
-#        #RB_15:
-#        self.RB_15_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_15_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_15_1d1 = nn.Conv1d(64,16,1,1)
-#        self.RB_15_1d2 = nn.Conv1d(16,64,1,1)
-#        #RB_16:
-#        self.RB_16_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_16_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_16_1d1 = nn.Conv1d(64,16,1,1)
-#        self.RB_16_1d2 = nn.Conv1d(16,64,1,1)
-#        #RB_17:
-#        self.RB_17_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_17_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_17_1d1 = nn.Conv1d(64,16,1,1)
-#        self.RB_17_1d2 = nn.Conv1d(16,64,1,1)
-#        #RB_18:
-#        self.RB_18_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_18_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_18_1d1 = nn.Conv1d(64,16,1,1)
-#        self.RB_18_1d2 = nn.Conv1d(16,64,1,1)
-#        #RB_19:
-#        self.RB_19_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_19_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_19_1d1 = nn.Conv1d(64,16,1,1)
-#        self.RB_19_1d2 = nn.Conv1d(16,64,1,1)
-#        #RB_20:
-#        self.RB_20_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_20_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-#        self.RB_20_1d1 = nn.Conv1d(64,16,1,1)
-#        self.RB_20_1d2 = nn.Conv1d(16,64,1,1)
+         #RB_11:
+        self.RB_11_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_11_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_11_1d1 = nn.Conv1d(64,16,1,1)
+        self.RB_11_1d2 = nn.Conv1d(16,64,1,1)
+        #RB_12:
+        self.RB_12_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_12_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_12_1d1 = nn.Conv1d(64,16,1,1)
+        self.RB_12_1d2 = nn.Conv1d(16,64,1,1)
+        #RB_13:
+        self.RB_13_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_13_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_13_1d1 = nn.Conv1d(64,16,1,1)
+        self.RB_13_1d2 = nn.Conv1d(16,64,1,1)
+        #RB_14:
+        self.RB_14_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_14_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_14_1d1 = nn.Conv1d(64,16,1,1)
+        self.RB_14_1d2 = nn.Conv1d(16,64,1,1)
+        #RB_15:
+        self.RB_15_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_15_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_15_1d1 = nn.Conv1d(64,16,1,1)
+        self.RB_15_1d2 = nn.Conv1d(16,64,1,1)
+        #RB_16:
+        self.RB_16_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_16_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_16_1d1 = nn.Conv1d(64,16,1,1)
+        self.RB_16_1d2 = nn.Conv1d(16,64,1,1)
+        #RB_17:
+        self.RB_17_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_17_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_17_1d1 = nn.Conv1d(64,16,1,1)
+        self.RB_17_1d2 = nn.Conv1d(16,64,1,1)
+        #RB_18:
+        self.RB_18_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_18_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_18_1d1 = nn.Conv1d(64,16,1,1)
+        self.RB_18_1d2 = nn.Conv1d(16,64,1,1)
+        #RB_19:
+        self.RB_19_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_19_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_19_1d1 = nn.Conv1d(64,16,1,1)
+        self.RB_19_1d2 = nn.Conv1d(16,64,1,1)
+        #RB_20:
+        self.RB_20_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_20_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        self.RB_20_1d1 = nn.Conv1d(64,16,1,1)
+        self.RB_20_1d2 = nn.Conv1d(16,64,1,1)
         #end cnn:
         self.end_RB=nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
         self.toR=nn.Conv2d(64, 3, (3, 3), (1, 1), (1, 1))
@@ -275,96 +275,96 @@ class Net1(nn.Module):
         x=x*ca.unsqueeze(3)
         x+=R_10
         
-#        #RB_11
-#        R_11=x
-#        x=F.relu(self.RB_11_conv1(x))
-#        x=self.RB_11_conv2(x)
-#        ca=self.pooling(x)
-#        ca=F.relu(self.RB_11_1d1(ca.squeeze(2)))
-#        ca=torch.sigmoid(self.RB_11_1d2(ca))
-#        x=x*ca.unsqueeze(3)
-#        x+=R_11
-#        #RB_12
-#        R_12=x
-#        x=F.relu(self.RB_12_conv1(x))
-#        x=self.RB_12_conv2(x)
-#        ca=self.pooling(x)
-#        ca=F.relu(self.RB_12_1d1(ca.squeeze(2)))
-#        ca=torch.sigmoid(self.RB_12_1d2(ca))
-#        x=x*ca.unsqueeze(3)
-#        x+=R_12
-#        #RB_13
-#        R_13=x
-#        x=F.relu(self.RB_13_conv1(x))
-#        x=self.RB_13_conv2(x)
-#        ca=self.pooling(x)
-#        ca=F.relu(self.RB_13_1d1(ca.squeeze(2)))
-#        ca=torch.sigmoid(self.RB_13_1d2(ca))
-#        x=x*ca.unsqueeze(3)
-#        x+=R_13
-#        #RB_14
-#        R_14=x
-#        x=F.relu(self.RB_14_conv1(x))
-#        x=self.RB_14_conv2(x)
-#        ca=self.pooling(x)
-#        ca=F.relu(self.RB_14_1d1(ca.squeeze(2)))
-#        ca=torch.sigmoid(self.RB_14_1d2(ca))
-#        x=x*ca.unsqueeze(3)
-#        x+=R_14
-#        #RB_15
-#        R_15=x
-#        x=F.relu(self.RB_15_conv1(x))
-#        x=self.RB_15_conv2(x)
-#        ca=self.pooling(x)
-#        ca=F.relu(self.RB_15_1d1(ca.squeeze(2)))
-#        ca=torch.sigmoid(self.RB_15_1d2(ca))
-#        x=x*ca.unsqueeze(3)
-#        x+=R_15
-#        #RB_16
-#        R_16=x
-#        x=F.relu(self.RB_16_conv1(x))
-#        x=self.RB_16_conv2(x)
-#        ca=self.pooling(x)
-#        ca=F.relu(self.RB_16_1d1(ca.squeeze(2)))
-#        ca=torch.sigmoid(self.RB_16_1d2(ca))
-#        x=x*ca.unsqueeze(3)
-#        x+=R_16
-#        #RB_17
-#        R_17=x
-#        x=F.relu(self.RB_17_conv1(x))
-#        x=self.RB_17_conv2(x)
-#        ca=self.pooling(x)
-#        ca=F.relu(self.RB_17_1d1(ca.squeeze(2)))
-#        ca=torch.sigmoid(self.RB_17_1d2(ca))
-#        x=x*ca.unsqueeze(3)
-#        x+=R_17
-#        #RB_18
-#        R_18=x
-#        x=F.relu(self.RB_18_conv1(x))
-#        x=self.RB_18_conv2(x)
-#        ca=self.pooling(x)
-#        ca=F.relu(self.RB_18_1d1(ca.squeeze(2)))
-#        ca=torch.sigmoid(self.RB_18_1d2(ca))
-#        x=x*ca.unsqueeze(3)
-#        x+=R_18
-#        #RB_19
-#        R_19=x
-#        x=F.relu(self.RB_19_conv1(x))
-#        x=self.RB_19_conv2(x)
-#        ca=self.pooling(x)
-#        ca=F.relu(self.RB_19_1d1(ca.squeeze(2)))
-#        ca=torch.sigmoid(self.RB_19_1d2(ca))
-#        x=x*ca.unsqueeze(3)
-#        x+=R_19
-#        #RB_20
-#        R_20=x
-#        x=F.relu(self.RB_20_conv1(x))
-#        x=self.RB_20_conv2(x)
-#        ca=self.pooling(x)
-#        ca=F.relu(self.RB_20_1d1(ca.squeeze(2)))
-#        ca=torch.sigmoid(self.RB_20_1d2(ca))
-#        x=x*ca.unsqueeze(3)
-#        x+=R_20
+        #RB_11
+        R_11=x
+        x=F.relu(self.RB_11_conv1(x))
+        x=self.RB_11_conv2(x)
+        ca=self.pooling(x)
+        ca=F.relu(self.RB_11_1d1(ca.squeeze(2)))
+        ca=torch.sigmoid(self.RB_11_1d2(ca))
+        x=x*ca.unsqueeze(3)
+        x+=R_11
+        #RB_12
+        R_12=x
+        x=F.relu(self.RB_12_conv1(x))
+        x=self.RB_12_conv2(x)
+        ca=self.pooling(x)
+        ca=F.relu(self.RB_12_1d1(ca.squeeze(2)))
+        ca=torch.sigmoid(self.RB_12_1d2(ca))
+        x=x*ca.unsqueeze(3)
+        x+=R_12
+        #RB_13
+        R_13=x
+        x=F.relu(self.RB_13_conv1(x))
+        x=self.RB_13_conv2(x)
+        ca=self.pooling(x)
+        ca=F.relu(self.RB_13_1d1(ca.squeeze(2)))
+        ca=torch.sigmoid(self.RB_13_1d2(ca))
+        x=x*ca.unsqueeze(3)
+        x+=R_13
+        #RB_14
+        R_14=x
+        x=F.relu(self.RB_14_conv1(x))
+        x=self.RB_14_conv2(x)
+        ca=self.pooling(x)
+        ca=F.relu(self.RB_14_1d1(ca.squeeze(2)))
+        ca=torch.sigmoid(self.RB_14_1d2(ca))
+        x=x*ca.unsqueeze(3)
+        x+=R_14
+        #RB_15
+        R_15=x
+        x=F.relu(self.RB_15_conv1(x))
+        x=self.RB_15_conv2(x)
+        ca=self.pooling(x)
+        ca=F.relu(self.RB_15_1d1(ca.squeeze(2)))
+        ca=torch.sigmoid(self.RB_15_1d2(ca))
+        x=x*ca.unsqueeze(3)
+        x+=R_15
+        #RB_16
+        R_16=x
+        x=F.relu(self.RB_16_conv1(x))
+        x=self.RB_16_conv2(x)
+        ca=self.pooling(x)
+        ca=F.relu(self.RB_16_1d1(ca.squeeze(2)))
+        ca=torch.sigmoid(self.RB_16_1d2(ca))
+        x=x*ca.unsqueeze(3)
+        x+=R_16
+        #RB_17
+        R_17=x
+        x=F.relu(self.RB_17_conv1(x))
+        x=self.RB_17_conv2(x)
+        ca=self.pooling(x)
+        ca=F.relu(self.RB_17_1d1(ca.squeeze(2)))
+        ca=torch.sigmoid(self.RB_17_1d2(ca))
+        x=x*ca.unsqueeze(3)
+        x+=R_17
+        #RB_18
+        R_18=x
+        x=F.relu(self.RB_18_conv1(x))
+        x=self.RB_18_conv2(x)
+        ca=self.pooling(x)
+        ca=F.relu(self.RB_18_1d1(ca.squeeze(2)))
+        ca=torch.sigmoid(self.RB_18_1d2(ca))
+        x=x*ca.unsqueeze(3)
+        x+=R_18
+        #RB_19
+        R_19=x
+        x=F.relu(self.RB_19_conv1(x))
+        x=self.RB_19_conv2(x)
+        ca=self.pooling(x)
+        ca=F.relu(self.RB_19_1d1(ca.squeeze(2)))
+        ca=torch.sigmoid(self.RB_19_1d2(ca))
+        x=x*ca.unsqueeze(3)
+        x+=R_19
+        #RB_20
+        R_20=x
+        x=F.relu(self.RB_20_conv1(x))
+        x=self.RB_20_conv2(x)
+        ca=self.pooling(x)
+        ca=F.relu(self.RB_20_1d1(ca.squeeze(2)))
+        ca=torch.sigmoid(self.RB_20_1d2(ca))
+        x=x*ca.unsqueeze(3)
+        x+=R_20
         
         #end:
         x=self.end_RB(x)
@@ -425,56 +425,56 @@ class Net1(nn.Module):
         init.orthogonal_(self.RB_10_conv2.weight)
         init.orthogonal_(self.RB_10_1d1.weight)
         init.orthogonal_(self.RB_10_1d2.weight)
-#        #RB_11
-#        init.orthogonal_(self.RB_11_conv1.weight)
-#        init.orthogonal_(self.RB_11_conv2.weight)
-#        init.orthogonal_(self.RB_11_1d1.weight)
-#        init.orthogonal_(self.RB_11_1d2.weight)
-#        #RB_12
-#        init.orthogonal_(self.RB_12_conv1.weight)
-#        init.orthogonal_(self.RB_12_conv2.weight)
-#        init.orthogonal_(self.RB_12_1d1.weight)
-#        init.orthogonal_(self.RB_12_1d2.weight)
-#        #RB_13
-#        init.orthogonal_(self.RB_13_conv1.weight)
-#        init.orthogonal_(self.RB_13_conv2.weight)
-#        init.orthogonal_(self.RB_13_1d1.weight)
-#        init.orthogonal_(self.RB_13_1d2.weight)
-#        #RB_14
-#        init.orthogonal_(self.RB_14_conv1.weight)
-#        init.orthogonal_(self.RB_14_conv2.weight)
-#        init.orthogonal_(self.RB_14_1d1.weight)
-#        init.orthogonal_(self.RB_14_1d2.weight)
-#        #RB_15
-#        init.orthogonal_(self.RB_15_conv1.weight)
-#        init.orthogonal_(self.RB_15_conv2.weight)
-#        init.orthogonal_(self.RB_15_1d1.weight)
-#        init.orthogonal_(self.RB_15_1d2.weight)
-#        #RB_16
-#        init.orthogonal_(self.RB_16_conv1.weight)
-#        init.orthogonal_(self.RB_16_conv2.weight)
-#        init.orthogonal_(self.RB_16_1d1.weight)
-#        init.orthogonal_(self.RB_16_1d2.weight)
-#        #RB_17
-#        init.orthogonal_(self.RB_17_conv1.weight)
-#        init.orthogonal_(self.RB_17_conv2.weight)
-#        init.orthogonal_(self.RB_17_1d1.weight)
-#        init.orthogonal_(self.RB_17_1d2.weight)
-#        #RB_18
-#        init.orthogonal_(self.RB_18_conv1.weight)
-#        init.orthogonal_(self.RB_18_conv2.weight)
-#        init.orthogonal_(self.RB_18_1d1.weight)
-#        init.orthogonal_(self.RB_18_1d2.weight)
-#        #RB_19
-#        init.orthogonal_(self.RB_19_conv1.weight)
-#        init.orthogonal_(self.RB_19_conv2.weight)
-#        init.orthogonal_(self.RB_19_1d1.weight)
-#        init.orthogonal_(self.RB_19_1d2.weight)
-#        #RB_20
-#        init.orthogonal_(self.RB_20_conv1.weight)
-#        init.orthogonal_(self.RB_20_conv2.weight)
-#        init.orthogonal_(self.RB_20_1d1.weight)
-#        init.orthogonal_(self.RB_20_1d2.weight)
+        #RB_11
+        init.orthogonal_(self.RB_11_conv1.weight)
+        init.orthogonal_(self.RB_11_conv2.weight)
+        init.orthogonal_(self.RB_11_1d1.weight)
+        init.orthogonal_(self.RB_11_1d2.weight)
+        #RB_12
+        init.orthogonal_(self.RB_12_conv1.weight)
+        init.orthogonal_(self.RB_12_conv2.weight)
+        init.orthogonal_(self.RB_12_1d1.weight)
+        init.orthogonal_(self.RB_12_1d2.weight)
+        #RB_13
+        init.orthogonal_(self.RB_13_conv1.weight)
+        init.orthogonal_(self.RB_13_conv2.weight)
+        init.orthogonal_(self.RB_13_1d1.weight)
+        init.orthogonal_(self.RB_13_1d2.weight)
+        #RB_14
+        init.orthogonal_(self.RB_14_conv1.weight)
+        init.orthogonal_(self.RB_14_conv2.weight)
+        init.orthogonal_(self.RB_14_1d1.weight)
+        init.orthogonal_(self.RB_14_1d2.weight)
+        #RB_15
+        init.orthogonal_(self.RB_15_conv1.weight)
+        init.orthogonal_(self.RB_15_conv2.weight)
+        init.orthogonal_(self.RB_15_1d1.weight)
+        init.orthogonal_(self.RB_15_1d2.weight)
+        #RB_16
+        init.orthogonal_(self.RB_16_conv1.weight)
+        init.orthogonal_(self.RB_16_conv2.weight)
+        init.orthogonal_(self.RB_16_1d1.weight)
+        init.orthogonal_(self.RB_16_1d2.weight)
+        #RB_17
+        init.orthogonal_(self.RB_17_conv1.weight)
+        init.orthogonal_(self.RB_17_conv2.weight)
+        init.orthogonal_(self.RB_17_1d1.weight)
+        init.orthogonal_(self.RB_17_1d2.weight)
+        #RB_18
+        init.orthogonal_(self.RB_18_conv1.weight)
+        init.orthogonal_(self.RB_18_conv2.weight)
+        init.orthogonal_(self.RB_18_1d1.weight)
+        init.orthogonal_(self.RB_18_1d2.weight)
+        #RB_19
+        init.orthogonal_(self.RB_19_conv1.weight)
+        init.orthogonal_(self.RB_19_conv2.weight)
+        init.orthogonal_(self.RB_19_1d1.weight)
+        init.orthogonal_(self.RB_19_1d2.weight)
+        #RB_20
+        init.orthogonal_(self.RB_20_conv1.weight)
+        init.orthogonal_(self.RB_20_conv2.weight)
+        init.orthogonal_(self.RB_20_1d1.weight)
+        init.orthogonal_(self.RB_20_1d2.weight)
         
         init.orthogonal_(self.end_RB.weight)
         init.orthogonal_(self.toR.weight)
