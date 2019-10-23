@@ -444,8 +444,8 @@ LR_set=torchvision.datasets.ImageFolder(root=LR_URL,transform=transforms.ToTenso
 LR_loader=torch.utils.data.DataLoader(LR_set,batch_size=1,shuffle=False,num_workers=0)
 LR_loader=iter(LR_loader)
 
-os.mkdir('2_LR_test_afternet1')
-os.chdir('2_LR_test_afternet1')
+os.mkdir('2_LR_afternet1')
+os.chdir('2_LR_afternet1')
 os.mkdir('2')
 os.chdir('2')
 
