@@ -494,7 +494,9 @@ optimizer=torch.optim.Adadelta(net1.parameters(), lr=1.0, rho=0.9, eps=1e-06, we
 for epoch in range(10):
     running_loss=0.0
     for i in range(100):
-        HR,LR=generator()[0].to(device),generator()[1].to(device)
+        HR,LR=generator()
+        HR=HR.to(device)
+        LR=LR.to(device)
         optimizer.zero_grad()
         outputs=net1(LR)
         Loss=criterion(outputs,HR)
@@ -519,10 +521,10 @@ for epoch in range(10):
                 x=1500
             if y>1500:
                 y=1500
-            HR_test=HR_test[:,0:x,0:y].to(device)
+            HR_test=HR_test[:,0:x,0:y]
             LR_test=LR_test[:,:,0:x,0:y].to(device)
             outputs=net1(LR_test).data.squeeze()
-            PSNR+=psnr(outputs.cpu(),HR_test.cpu())
+            PSNR+=psnr(outputs.cpu(),HR_test)
             del HR_test,LR_test,outputs
     PSNR=PSNR/n_test
     p.append(PSNR)
@@ -537,7 +539,9 @@ optimizer=torch.optim.Adam(net1.parameters(), lr=0.0001, betas=(0.9, 0.999), eps
 for epoch in range(100):
     running_loss=0.0
     for i in range(100):
-        HR,LR=generator()[0].to(device),generator()[1].to(device)
+        HR,LR=generator()
+        HR=HR.to(device)
+        LR=LR.to(device)
         optimizer.zero_grad()
         outputs=net1(LR)
         Loss=criterion(outputs,HR)
@@ -562,10 +566,10 @@ for epoch in range(100):
                 x=1500
             if y>1500:
                 y=1500
-            HR_test=HR_test[:,0:x,0:y].to(device)
+            HR_test=HR_test[:,0:x,0:y]
             LR_test=LR_test[:,:,0:x,0:y].to(device)
             outputs=net1(LR_test).data.squeeze()
-            PSNR+=psnr(outputs.cpu(),HR_test.cpu())
+            PSNR+=psnr(outputs.cpu(),HR_test)
             del HR_test,LR_test,outputs
     PSNR=PSNR/n_test
     p.append(PSNR)
