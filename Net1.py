@@ -178,8 +178,8 @@ class Net1(nn.Module):
         #end cnn:
         self.end_RB=nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
         self.toR=nn.Conv2d(64, 3, (3, 3), (1, 1), (1, 1))
-       
-
+        self._initialize_weights()
+        
     def forward(self, x):
         LR=x
         x=self.int(x)
@@ -373,7 +373,7 @@ class Net1(nn.Module):
         return x
 
     def _initialize_weights(self):
-        init.orthogonal_(self.int.weight, init.calculate_gain('relu'))
+        init.orthogonal_(self.int.weight)
         
         #RB_1
         init.orthogonal_(self.RB_1_conv1.weight)
