@@ -156,15 +156,15 @@ class Net1(nn.Module):
         self.RB_16_1d1 = nn.Conv1d(64,16,1,1)
         self.RB_16_1d2 = nn.Conv1d(16,64,1,1)
         #RB_17:
-        self.RB_17_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-        self.RB_17_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-        self.RB_17_1d1 = nn.Conv1d(64,16,1,1)
-        self.RB_17_1d2 = nn.Conv1d(16,64,1,1)
+        #self.RB_17_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        #self.RB_17_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        #self.RB_17_1d1 = nn.Conv1d(64,16,1,1)
+        #self.RB_17_1d2 = nn.Conv1d(16,64,1,1)
         #RB_18:
-        self.RB_18_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-        self.RB_18_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
-        self.RB_18_1d1 = nn.Conv1d(64,16,1,1)
-        self.RB_18_1d2 = nn.Conv1d(16,64,1,1)
+        #self.RB_18_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        #self.RB_18_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
+        #self.RB_18_1d1 = nn.Conv1d(64,16,1,1)
+        #self.RB_18_1d2 = nn.Conv1d(16,64,1,1)
         #RB_19:
         #self.RB_19_conv1 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
         #self.RB_19_conv2 = nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
@@ -330,23 +330,23 @@ class Net1(nn.Module):
         x=x*ca.unsqueeze(3)
         x+=R_16
         #RB_17
-        R_17=x
-        x=F.relu(self.RB_17_conv1(x))
-        x=self.RB_17_conv2(x)
-        ca=self.pooling(x)
-        ca=F.relu(self.RB_17_1d1(ca.squeeze(2)))
-        ca=torch.sigmoid(self.RB_17_1d2(ca))
-        x=x*ca.unsqueeze(3)
-        x+=R_17
+        #R_17=x
+        #x=F.relu(self.RB_17_conv1(x))
+        #x=self.RB_17_conv2(x)
+        #ca=self.pooling(x)
+        #ca=F.relu(self.RB_17_1d1(ca.squeeze(2)))
+        #ca=torch.sigmoid(self.RB_17_1d2(ca))
+        #x=x*ca.unsqueeze(3)
+        #x+=R_17
         #RB_18
-        R_18=x
-        x=F.relu(self.RB_18_conv1(x))
-        x=self.RB_18_conv2(x)
-        ca=self.pooling(x)
-        ca=F.relu(self.RB_18_1d1(ca.squeeze(2)))
-        ca=torch.sigmoid(self.RB_18_1d2(ca))
-        x=x*ca.unsqueeze(3)
-        x+=R_18
+        #R_18=x
+        #x=F.relu(self.RB_18_conv1(x))
+        #x=self.RB_18_conv2(x)
+        #ca=self.pooling(x)
+        #ca=F.relu(self.RB_18_1d1(ca.squeeze(2)))
+        #ca=torch.sigmoid(self.RB_18_1d2(ca))
+        #x=x*ca.unsqueeze(3)
+        #x+=R_18
         #RB_19
         #R_19=x
         #x=F.relu(self.RB_19_conv1(x))
@@ -456,15 +456,15 @@ class Net1(nn.Module):
         init.orthogonal_(self.RB_16_1d1.weight)
         init.orthogonal_(self.RB_16_1d2.weight)
         #RB_17
-        init.orthogonal_(self.RB_17_conv1.weight)
-        init.orthogonal_(self.RB_17_conv2.weight)
-        init.orthogonal_(self.RB_17_1d1.weight)
-        init.orthogonal_(self.RB_17_1d2.weight)
+        #init.orthogonal_(self.RB_17_conv1.weight)
+        #init.orthogonal_(self.RB_17_conv2.weight)
+        #init.orthogonal_(self.RB_17_1d1.weight)
+        #init.orthogonal_(self.RB_17_1d2.weight)
         #RB_18
-        init.orthogonal_(self.RB_18_conv1.weight)
-        init.orthogonal_(self.RB_18_conv2.weight)
-        init.orthogonal_(self.RB_18_1d1.weight)
-        init.orthogonal_(self.RB_18_1d2.weight)
+        #init.orthogonal_(self.RB_18_conv1.weight)
+        #init.orthogonal_(self.RB_18_conv2.weight)
+        #init.orthogonal_(self.RB_18_1d1.weight)
+        #init.orthogonal_(self.RB_18_1d2.weight)
         #RB_19
         #init.orthogonal_(self.RB_19_conv1.weight)
         #init.orthogonal_(self.RB_19_conv2.weight)
@@ -483,8 +483,6 @@ class Net1(nn.Module):
 net1=Net1()
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 net1.to(device)
-
-p=[]
 
 
 
