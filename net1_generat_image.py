@@ -13,7 +13,6 @@ import torch.nn.functional as F
 import torch.nn.init as init
 import math
 import os
-from os.path import dirname, abspath
 
 class Net1(nn.Module):
     def __init__(self):
@@ -432,8 +431,8 @@ net1=Net1()
 net1.load_state_dict(torch.load('real_net1.pt'))
 net1.eval()
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-net1.to(device)
+#device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+#net1.to(device)
 
 cwd = os.getcwd()
 
@@ -454,9 +453,9 @@ os.chdir(cwd)
 
 with torch.no_grad():
     for i in range(len(LR_set)):
-        LR=LR_loader.next()[0].to(device)
+        LR=LR_loader.next()[0]#.to(device)
         LR_after=net1(LR).data.squeeze()
-        LR_after=LR_after.cpu()
+        LR_after=LR_after#.cpu()
         LR_after = transforms.ToPILImage()(LR_after)
         os.chdir(wd_1)
         LR_after.save("2_LR_afternet1"+str(i+1)+".png","PNG")
@@ -479,9 +478,9 @@ wd_2=os.getcwd()
 os.chdir(cwd)
 with torch.no_grad():
     for i in range(len(LR_set)):
-        LR=LR_loader.next()[0].to(device)
+        LR=LR_loader.next()[0]#.to(device)
         LR_after=net1(LR).data.squeeze()
-        LR_after=LR_after.cpu()
+        LR_after=LR_after#.cpu()
         LR_after = transforms.ToPILImage()(LR_after)
         os.chdir(cwd_2)
         LR_after.save("2_LR_test_afternet1"+str(i+1)+".png","PNG")
