@@ -470,7 +470,7 @@ with torch.no_grad():
         LR_after=temp.cpu()
         LR_after = transforms.ToPILImage()(LR_after)
         os.chdir(wd_1)
-        LR_after.save("2_LR_afternet1"+str(i+1)+".png","PNG")
+        LR_after.save("2_LR_afternet1_"+str(i+1)+".png","PNG")
         os.chdir(cwd)
         print('done')
         
@@ -509,7 +509,7 @@ with torch.no_grad():
        LR_after=temp.cpu()
        LR_after = transforms.ToPILImage()(LR_after)
        os.chdir(wd_2)
-       LR_after.save("2_LR_test_afternet1"+str(i+1)+".png","PNG")
+       LR_after.save("2_LR_test_afternet1_"+str(i+1)+".png","PNG")
        os.chdir(cwd)
        print('done')
 
