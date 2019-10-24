@@ -696,7 +696,7 @@ net2.RB_1_1d1.bias.data=net1.RB_1_1d1.bias.data
 net2.RB_1_1d2.weight.data=net1.RB_1_1d2.weight.data
 net2.RB_1_1d2.bias.data=net1.RB_1_1d2.bias.data
 #RB2
-net2.RB_2_conv1.weight.data=net1.RB_2conv1.weight.data
+net2.RB_2_conv1.weight.data=net1.RB_2_conv1.weight.data
 net2.RB_2_conv1.bias.data=net1.RB_2_conv1.bias.data
 net2.RB_2_conv2.weight.data=net1.RB_2_conv2.weight.data
 net2.RB_2_conv2.bias.data=net1.RB_2_conv2.bias.data
