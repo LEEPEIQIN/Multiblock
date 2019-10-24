@@ -435,7 +435,7 @@ net1.eval()
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 net1.to(device)
 
-
+cwd = os.getcwd()
 
 #####################################################################3
 LR_URL='2_LR'
@@ -449,24 +449,20 @@ os.chdir('2_LR_afternet1')
 os.mkdir('2')
 os.chdir('2')
 
-
+wd_1=os.getcwd()
+os.chdir(cwd)
 
 with torch.no_grad():
     for i in range(len(LR_set)):
-        d = dirname(abspath(__file__))
-        os.chdir(d)
         LR=LR_loader.next()[0].to(device)
-        os.chdir('2_LR_afternet1')
-        os.chdir('2')
         LR_after=net1(LR).data.squeeze()
         LR_after=LR_after.cpu()
         LR_after = transforms.ToPILImage()(LR_after)
+        os.chdir(wd_1)
         LR_after.save("2_LR_afternet1"+str(i+1)+".png","PNG")
-        
+        os.chdir(cwd)
         
 ##
-d = dirname(abspath(__file__))
-os.chdir(d)
         
 LR_URL='2_LR_test'
 
@@ -479,23 +475,19 @@ os.chdir('2_LR_test_afternet1')
 os.mkdir('2')
 os.chdir('2')
 
-
-
+wd_2=os.getcwd()
+os.chdir(cwd)
 with torch.no_grad():
     for i in range(len(LR_set)):
-        d = dirname(abspath(__file__))
-        os.chdir(d)
         LR=LR_loader.next()[0].to(device)
-        os.chdir('2_LR_afternet1')
-        os.chdir('2')
         LR_after=net1(LR).data.squeeze()
         LR_after=LR_after.cpu()
         LR_after = transforms.ToPILImage()(LR_after)
+        os.chdir(cwd_2)
         LR_after.save("2_LR_test_afternet1"+str(i+1)+".png","PNG")
+        os.chdir(cwd)
         
-        
-d = dirname(abspath(__file__))
-os.chdir(d)
+
     
 
 
