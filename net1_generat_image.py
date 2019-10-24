@@ -431,8 +431,8 @@ net1=Net1()
 net1.load_state_dict(torch.load('real_net1.pt'))
 net1.eval()
 
-#device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-#net1.to(device)
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+net1.to(device)
 
 cwd = os.getcwd()
 
@@ -453,9 +453,21 @@ os.chdir(cwd)
 
 with torch.no_grad():
     for i in range(len(LR_set)):
-        LR=LR_loader.next()[0]#.to(device)
-        LR_after=net1(LR).data.squeeze()
-        LR_after=LR_after#.cpu()
+        LR=LR_loader.next()[0]
+        _,_,x,y=LR.size()
+        temp=torch.nn.functional.unfold(LR,(int(x/2),int(y/2)),stride=(int(x/2),int(y/2)))
+        LR_tl=temp[:,:,0].reshape([1,3,int(x/2),int(y/2)]).to(device)
+        LR_tr=temp[:,:,1].reshape([1,3,int(x/2),int(y/2)]).to(device)
+        LR_bl=temp[:,:,2].reshape([1,3,int(x/2),int(y/2)]).to(device)
+        LR_br=temp[:,:,3].reshape([1,3,int(x/2),int(y/2)]).to(device)
+        LR_1=net1(LR_tl).data
+        LR_2=net1(LR_tr).data
+        LR_3=net1(LR_bl).data
+        LR_4=net1(LR_br).data
+        temp1=torch.cat((LR_1,LR_2),3)
+        temp2=torch.cat((LR_3,LR_4),3)
+        temp=torch.cat((temp1,temp2),2).squeeze()
+        LR_after=temp.cpu()
         LR_after = transforms.ToPILImage()(LR_after)
         os.chdir(wd_1)
         LR_after.save("2_LR_afternet1"+str(i+1)+".png","PNG")
@@ -477,19 +489,29 @@ os.chdir('2')
 
 wd_2=os.getcwd()
 os.chdir(cwd)
-with torch.no_grad():
-    for i in range(len(LR_set)):
-        LR=LR_loader.next()[0]#.to(device)
-        LR_after=net1(LR).data.squeeze()
-        LR_after=LR_after#.cpu()
-        LR_after = transforms.ToPILImage()(LR_after)
-        os.chdir(cwd_2)
-        LR_after.save("2_LR_test_afternet1"+str(i+1)+".png","PNG")
-        os.chdir(cwd)
-        print('done')
         
-
-    
+with torch.no_grad():
+   for i in range(len(LR_set)):
+       LR=LR_loader.next()[0]
+       _,_,x,y=LR.size()
+       temp=torch.nn.functional.unfold(LR,(int(x/2),int(y/2)),stride=(int(x/2),int(y/2)))
+       LR_tl=temp[:,:,0].reshape([1,3,int(x/2),int(y/2)]).to(device)
+       LR_tr=temp[:,:,1].reshape([1,3,int(x/2),int(y/2)]).to(device)
+       LR_bl=temp[:,:,2].reshape([1,3,int(x/2),int(y/2)]).to(device)
+       LR_br=temp[:,:,3].reshape([1,3,int(x/2),int(y/2)]).to(device)
+       LR_1=net1(LR_tl).data
+       LR_2=net1(LR_tr).data
+       LR_3=net1(LR_bl).data
+       LR_4=net1(LR_br).data
+       temp1=torch.cat((LR_1,LR_2),3)
+       temp2=torch.cat((LR_3,LR_4),3)
+       temp=torch.cat((temp1,temp2),2).squeeze()
+       LR_after=temp.cpu()
+       LR_after = transforms.ToPILImage()(LR_after)
+       os.chdir(wd_1)
+       LR_after.save("2_LR_test_afternet1"+str(i+1)+".png","PNG")
+       os.chdir(cwd)
+       print('done')
 
 
 
