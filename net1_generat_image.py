@@ -452,7 +452,7 @@ os.chdir('2')
 
 
 with torch.no_grad():
-    for i in len(LR_set):
+    for i in range(len(LR_set)):
         LR=LR_loader.next()[0].to(device)
         LR_after=net1(LR).data.squeeze()
         LR_after=LR_after.cpu()
@@ -478,7 +478,7 @@ os.chdir('2')
 
 
 with torch.no_grad():
-    for i in len(LR_set):
+    for i in range(len(LR_set)):
         LR=LR_loader.next()[0].to(device)
         LR_after=net1(LR).data.squeeze()
         LR_after=LR_after.cpu()
