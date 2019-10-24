@@ -460,6 +460,7 @@ with torch.no_grad():
         os.chdir(wd_1)
         LR_after.save("2_LR_afternet1"+str(i+1)+".png","PNG")
         os.chdir(cwd)
+        print('done')
         
 ##
         
@@ -485,6 +486,7 @@ with torch.no_grad():
         os.chdir(cwd_2)
         LR_after.save("2_LR_test_afternet1"+str(i+1)+".png","PNG")
         os.chdir(cwd)
+        print('done')
         
 
     
