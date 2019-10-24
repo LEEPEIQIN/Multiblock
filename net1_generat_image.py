@@ -453,7 +453,11 @@ os.chdir('2')
 
 with torch.no_grad():
     for i in range(len(LR_set)):
+        d = dirname(abspath(__file__))
+        os.chdir(d)
         LR=LR_loader.next()[0].to(device)
+        os.chdir('2_LR_afternet1')
+        os.chdir('2')
         LR_after=net1(LR).data.squeeze()
         LR_after=LR_after.cpu()
         LR_after = transforms.ToPILImage()(LR_after)
@@ -479,14 +483,19 @@ os.chdir('2')
 
 with torch.no_grad():
     for i in range(len(LR_set)):
+        d = dirname(abspath(__file__))
+        os.chdir(d)
         LR=LR_loader.next()[0].to(device)
+        os.chdir('2_LR_afternet1')
+        os.chdir('2')
         LR_after=net1(LR).data.squeeze()
         LR_after=LR_after.cpu()
         LR_after = transforms.ToPILImage()(LR_after)
         LR_after.save("2_LR_test_afternet1"+str(i+1)+".png","PNG")
         
         
-    
+d = dirname(abspath(__file__))
+os.chdir(d)
     
 
 
