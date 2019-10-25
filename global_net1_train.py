@@ -462,7 +462,7 @@ for i in range(20):
     for j in range(len(LR_set)):
         optimizer.zero_grad()
         LR=LR_loader.next()[0]
-        HR=HR_loader.next()[0].to(device)
+        HR=HR_loader.next()[0]
         _,_,x,y=LR.size()
         temp=torch.nn.functional.unfold(LR,(int(x/2),int(y/2)),stride=(int(x/2),int(y/2)))
         LR_tl=temp[:,:,0].reshape([1,3,int(x/2),int(y/2)]).to(device)
@@ -479,7 +479,7 @@ for i in range(20):
         del LR_3,LR_4
         temp=torch.cat((temp1,temp2),2)
         del temp1,temp2
-        Loss=Loss=criterion(temp,HR)
+        Loss=Loss=criterion(temp,HR.to(device))
         Loss.backward()
         optimizer.step()
         print('[%d, %5d] loss: %.3f' %(i + 1, j + 1, Loss.item()))
