@@ -572,6 +572,49 @@ for epoch in range(100):
     print(PSNR)
     del PSNR,n_test,temp_HR_2,temp_LR_2
     torch.save(net1.state_dict(), 'real_net1.pt')
-print('Finished Training phase1')
+print('Finished Training phase2')
+
+criterion = nn.MSELoss()
+optimizer=torch.optim.Adam(net1.parameters(), lr=0.00001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
+for epoch in range(100):
+    running_loss=0.0
+    for i in range(100):
+        HR,LR=generator()
+        HR=HR.to(device)
+        LR=LR.to(device)
+        optimizer.zero_grad()
+        outputs=net1(LR)
+        Loss=criterion(outputs,HR)
+        Loss.backward()
+        optimizer.step()
+        running_loss+=Loss.item()
+        
+        print('[%d, %5d] loss: %.3f' %
+             (epoch + 1, i + 1, running_loss))
+        running_loss = 0.0
+        del HR,LR,Loss,outputs
+    n_test=15
+    PSNR=0.0
+    temp_HR_2=iter(HR_2_test)
+    temp_LR_2=iter(LR_2_test)
+    for t in range(n_test):
+        with torch.no_grad():
+            HR_test=temp_HR_2.next()[0].squeeze()
+            _,x,y=HR_test.size()
+            LR_test=temp_LR_2.next()[0]
+            if x>1500:
+                x=1500
+            if y>1500:
+                y=1500
+            HR_test=HR_test[:,0:x,0:y]
+            LR_test=LR_test[:,:,0:x,0:y].to(device)
+            outputs=net1(LR_test).data.squeeze()
+            PSNR+=psnr(outputs.cpu(),HR_test)
+            del HR_test,LR_test,outputs
+    PSNR=PSNR/n_test
+    print(PSNR)
+    del PSNR,n_test,temp_HR_2,temp_LR_2
+    torch.save(net1.state_dict(), 'real_net1.pt')
+print('Finished Training phase3')
 
 torch.save(net1.state_dict(), 'real_net1.pt')
