@@ -474,8 +474,11 @@ for i in range(20):
         LR_3=net1(LR_bl)
         LR_4=net1(LR_br)
         temp1=torch.cat((LR_1,LR_2),3)
+        del LR_1,LR_2
         temp2=torch.cat((LR_3,LR_4),3)
+        del LR_3,LR_4
         temp=torch.cat((temp1,temp2),2)
+        del temp1,temp2
         Loss=Loss=criterion(temp,HR)
         Loss.backward()
         optimizer.step()
