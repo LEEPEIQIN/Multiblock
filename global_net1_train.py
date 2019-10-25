@@ -460,28 +460,47 @@ for i in range(20):
     HR_loader=torch.utils.data.DataLoader(HR_set,batch_size=1,shuffle=False,num_workers=0)
     HR_loader=iter(HR_loader)
     for j in range(len(LR_set)):
-        optimizer.zero_grad()
         LR=LR_loader.next()[0]
         HR=HR_loader.next()[0]
         _,_,x,y=LR.size()
         temp=torch.nn.functional.unfold(LR,(int(x/2),int(y/2)),stride=(int(x/2),int(y/2)))
+        temp2=torch.nn.functional.unfold(HR,(int(x/2),int(y/2)),stride=(int(x/2),int(y/2)))
+        
+        optimizer.zero_grad()
         LR_tl=temp[:,:,0].reshape([1,3,int(x/2),int(y/2)]).to(device)
-        LR_tr=temp[:,:,1].reshape([1,3,int(x/2),int(y/2)]).to(device)
-        LR_bl=temp[:,:,2].reshape([1,3,int(x/2),int(y/2)]).to(device)
-        LR_br=temp[:,:,3].reshape([1,3,int(x/2),int(y/2)]).to(device)
         LR_1=net1(LR_tl)
-        LR_2=net1(LR_tr)
-        LR_3=net1(LR_bl)
-        LR_4=net1(LR_br)
-        temp1=torch.cat((LR_1,LR_2),3)
-        del LR_1,LR_2
-        temp2=torch.cat((LR_3,LR_4),3)
-        del LR_3,LR_4
-        temp=torch.cat((temp1,temp2),2)
-        del temp1,temp2
-        Loss=Loss=criterion(temp,HR.to(device))
+        HR_1=temp2[:,:,0].reshape([1,3,int(x/2),int(y/2)]).to(device)
+        Loss=criterion(LR_1,HR_1)
         Loss.backward()
         optimizer.step()
+        del LR_1,HR_1,LR_tl
+        
+        optimizer.zero_grad()
+        LR_tr=temp[:,:,1].reshape([1,3,int(x/2),int(y/2)]).to(device)
+        LR_2=net1(LR_tr)
+        HR_2=temp2[:,:,1].reshape([1,3,int(x/2),int(y/2)]).to(device)
+        Loss=criterion(LR_2,HR_2)
+        Loss.backward()
+        optimizer.step()
+        del LR_2,HR_2,LR_tr
+        
+        optimizer.zero_grad()
+        LR_bl=temp[:,:,2].reshape([1,3,int(x/2),int(y/2)]).to(device)
+        LR_3=net1(LR_bl)
+        HR_3=temp2[:,:,2].reshape([1,3,int(x/2),int(y/2)]).to(device)
+        Loss=criterion(LR_3,HR_3)
+        Loss.backward()
+        optimizer.step()
+        del LR_3,HR_3,LR_bl
+        
+        optimizer.zero_grad()
+        LR_br=temp[:,:,3].reshape([1,3,int(x/2),int(y/2)]).to(device)
+        LR_4=net1(LR_br)
+        HR_4=temp2[:,:,3].reshape([1,3,int(x/2),int(y/2)]).to(device)
+        Loss=criterion(LR_4,HR_4)
+        Loss.backward()
+        optimizer.step()
+        del LR_4,HR_4,LR_br
         print('[%d, %5d] loss: %.3f' %(i + 1, j + 1, Loss.item()))
         del LR,HR,temp
     n_test=15
