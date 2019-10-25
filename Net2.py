@@ -843,7 +843,7 @@ net2.to(device)
 
 #first:
 criterion = nn.L1Loss()
-optimizer=torch.optim.Adam(net2.parameters(), lr=0.00001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
+optimizer=torch.optim.Adam(net2.parameters(), lr=0.0001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
 for epoch in range(50):
     running_loss=0.0
     for i in range(100):
@@ -887,7 +887,7 @@ print('Finished Training phase1')
 
 #next using L2, and adam:
 criterion = nn.MSELoss()
-optimizer=torch.optim.Adam(net2.parameters(), lr=0.000001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
+optimizer=torch.optim.Adam(net2.parameters(), lr=0.00001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
 for epoch in range(200):
     running_loss=0.0
     for i in range(100):
