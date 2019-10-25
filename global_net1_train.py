@@ -459,7 +459,7 @@ for i in range(20):
     HR_set=torchvision.datasets.ImageFolder(root=HR_URL,transform=transforms.ToTensor())
     HR_loader=torch.utils.data.DataLoader(HR_set,batch_size=1,shuffle=False,num_workers=0)
     HR_loader=iter(HR_loader)
-    for j in range(LR_set):
+    for j in range(len(LR_set)):
         optimizer.zero_grad()
         LR=LR_loader.next()[0]
         HR=HR_loader.next()[0].to(device)
