@@ -16,13 +16,10 @@ import math
 def psnr(target, ref):
     # target:目标图像  ref:参考图像 
     # assume RGB image
-    target_data = np.array(target)
-    ref_data = np.array(ref)
-    diff = ref_data - target_data
-    diff = diff.flatten('C')
-    rmse = math.sqrt( np.mean(diff ** 2.) )
-    return 20*math.log10(1.0/rmse)
-
+    diff = ref- target
+    diff = diff.reshape(-1)
+    rmse = torch.sqrt((diff ** 2.).mean())
+    return 20*torch.log10(1.0/rmse)
 #test loader:
 test_LR = torchvision.datasets.ImageFolder(root='2_LR_test_afternet1', transform=transforms.ToTensor())
 LR_2_test = torch.utils.data.DataLoader(test_LR, batch_size=1, shuffle=False, num_workers=0)
@@ -844,7 +841,7 @@ net2.to(device)
 #first:
 criterion = nn.L1Loss()
 optimizer=torch.optim.Adam(net2.parameters(), lr=0.0001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
-for epoch in range(50):
+for epoch in range(10):
     running_loss=0.0
     for i in range(100):
         HR,LR=generator()
@@ -874,10 +871,10 @@ for epoch in range(50):
                 x=1500
             if y>1500:
                 y=1500
-            HR_test=HR_test[:,0:x,0:y]
+            HR_test=HR_test[:,0:x,0:y].to(device)
             LR_test=LR_test[:,:,0:x,0:y].to(device)
             outputs=net2(LR_test).data.squeeze()
-            PSNR+=psnr(outputs.cpu(),HR_test)
+            PSNR+=psnr(outputs,HR_test)
             del HR_test,LR_test,outputs
     PSNR=PSNR/n_test
     print(PSNR)
@@ -918,10 +915,10 @@ for epoch in range(200):
                 x=1500
             if y>1500:
                 y=1500
-            HR_test=HR_test[:,0:x,0:y]
+            HR_test=HR_test[:,0:x,0:y].to(device)
             LR_test=LR_test[:,:,0:x,0:y].to(device)
             outputs=net2(LR_test).data.squeeze()
-            PSNR+=psnr(outputs.cpu(),HR_test)
+            PSNR+=psnr(outputs,HR_test)
             del HR_test,LR_test,outputs
     PSNR=PSNR/n_test
     print(PSNR)
