@@ -16,12 +16,10 @@ import math
 def psnr(target, ref):
     # target:目标图像  ref:参考图像 
     # assume RGB image
-    target_data = np.array(target)
-    ref_data = np.array(ref)
-    diff = ref_data - target_data
-    diff = diff.flatten('C')
-    rmse = math.sqrt( np.mean(diff ** 2.) )
-    return 20*math.log10(1.0/rmse)
+    diff = ref- target
+    diff = diff.reshape(-1)
+    rmse = torch.sqrt((diff ** 2.).mean())
+    return 20*torch.log10(1.0/rmse)
 
 #test loader:
 test_LR = torchvision.datasets.ImageFolder(root='2_LR_test', transform=transforms.ToTensor())
@@ -519,10 +517,10 @@ for epoch in range(10):
                 x=1500
             if y>1500:
                 y=1500
-            HR_test=HR_test[:,0:x,0:y]
+            HR_test=HR_test[:,0:x,0:y].to(device)
             LR_test=LR_test[:,:,0:x,0:y].to(device)
             outputs=net1(LR_test).data.squeeze()
-            PSNR+=psnr(outputs.cpu(),HR_test)
+            PSNR+=psnr(outputs,HR_test)
             del HR_test,LR_test,outputs
     PSNR=PSNR/n_test
     print(PSNR)
@@ -563,10 +561,10 @@ for epoch in range(100):
                 x=1500
             if y>1500:
                 y=1500
-            HR_test=HR_test[:,0:x,0:y]
+            HR_test=HR_test[:,0:x,0:y].to(device)
             LR_test=LR_test[:,:,0:x,0:y].to(device)
             outputs=net1(LR_test).data.squeeze()
-            PSNR+=psnr(outputs.cpu(),HR_test)
+            PSNR+=psnr(outputs,HR_test)
             del HR_test,LR_test,outputs
     PSNR=PSNR/n_test
     print(PSNR)
@@ -606,10 +604,10 @@ for epoch in range(100):
                 x=1500
             if y>1500:
                 y=1500
-            HR_test=HR_test[:,0:x,0:y]
+            HR_test=HR_test[:,0:x,0:y].to(device)
             LR_test=LR_test[:,:,0:x,0:y].to(device)
             outputs=net1(LR_test).data.squeeze()
-            PSNR+=psnr(outputs.cpu(),HR_test)
+            PSNR+=psnr(outputs,HR_test)
             del HR_test,LR_test,outputs
     PSNR=PSNR/n_test
     print(PSNR)
