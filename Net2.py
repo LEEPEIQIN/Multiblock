@@ -841,8 +841,8 @@ net2.to(device)
 
 
 
-#first using L2:
-criterion = nn.MSELoss()
+#first:
+criterion = nn.L1Loss()
 optimizer=torch.optim.Adam(net2.parameters(), lr=0.00001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
 for epoch in range(50):
     running_loss=0.0
