@@ -490,7 +490,7 @@ criterion = nn.MSELoss()
 optimizer=torch.optim.Adam(net1.parameters(), lr=0.00001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
 for epoch in range(200):
     running_loss=0.0
-    for i in range(100):
+    for i in range(500):
         HR,LR=generator()
         HR=HR.to(device)
         LR=LR.to(device)
