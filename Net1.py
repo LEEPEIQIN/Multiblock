@@ -368,6 +368,8 @@ class Net1(nn.Module):
         x=self.end_RB(x)
         x=self.toR(x)
         x+=LR
+        x[x < 0.0] = 0.0
+        x[x>1.0]=1.0
         return x
 
     def _initialize_weights(self):
@@ -529,11 +531,11 @@ for epoch in range(10):
 print('Finished Training phase1')
 
 #next using L2, and adam:
-criterion = nn.MSELoss()
+criterion = nn.L1Loss()
 optimizer=torch.optim.Adam(net1.parameters(), lr=0.0001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
 for epoch in range(100):
     running_loss=0.0
-    for i in range(100):
+    for i in range(200):
         HR,LR=generator()
         HR=HR.to(device)
         LR=LR.to(device)
@@ -572,11 +574,11 @@ for epoch in range(100):
     torch.save(net1.state_dict(), 'real_net1.pt')
 print('Finished Training phase2')
 
-criterion = nn.MSELoss()
-optimizer=torch.optim.Adam(net1.parameters(), lr=0.00001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
+criterion = nn.L1oss()
+optimizer=torch.optim.Adam(net1.parameters(), lr=0.000001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
 for epoch in range(100):
     running_loss=0.0
-    for i in range(100):
+    for i in range(200):
         HR,LR=generator()
         HR=HR.to(device)
         LR=LR.to(device)
