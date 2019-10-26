@@ -671,6 +671,8 @@ class Net2(nn.Module):
         x=self.end_RB(x)
         x=self.toR(x)
         x+=LR
+        x[x < 0.0] = 0.0
+        x[x>1.0]=1.0
         return x
 
         
@@ -843,7 +845,7 @@ criterion = nn.L1Loss()
 optimizer=torch.optim.Adam(net2.parameters(), lr=0.0001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
 for epoch in range(100):
     running_loss=0.0
-    for i in range(200):
+    for i in range(300):
         HR,LR=generator()
         HR=HR.to(device)
         LR=LR.to(device)
@@ -887,7 +889,7 @@ criterion = nn.L1Loss()
 optimizer=torch.optim.Adam(net2.parameters(), lr=0.00001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
 for epoch in range(100):
     running_loss=0.0
-    for i in range(200):
+    for i in range(300):
         HR,LR=generator()
         HR=HR.to(device)
         LR=LR.to(device)
