@@ -332,6 +332,8 @@ class Net1(nn.Module):
         x=self.end_RB(x)
         x=self.toR(x)
         x+=LR
+        x[x < 0.0] = 0.0
+        x[x>1.0]=1.0
         return x
 
     def _initialize_weights(self):
@@ -450,7 +452,7 @@ net1.eval()
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 net1.to(device)
         
-criterion = nn.MSELoss()
+criterion = nn.L1Loss()
 optimizer=torch.optim.Adam(net1.parameters(), lr=0.0001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
 for i in range(20):
     LR_set=torchvision.datasets.ImageFolder(root=LR_URL,transform=transforms.ToTensor())
