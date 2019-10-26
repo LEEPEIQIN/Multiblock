@@ -368,8 +368,6 @@ class Net1(nn.Module):
         x=self.end_RB(x)
         x=self.toR(x)
         x+=LR
-        x[x < 0.0] = 0.0
-        x[x>1.0]=1.0
         return x
 
     def _initialize_weights(self):
