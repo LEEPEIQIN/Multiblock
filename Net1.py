@@ -32,7 +32,7 @@ def generator():
     HR_URL='2_HR'
     LR_URL='2_LR'
     batch_size=64
-    image_size=81
+    image_size=48
     channel=3
     #genereting:
     HR_set=torchvision.datasets.ImageFolder(root=HR_URL)
