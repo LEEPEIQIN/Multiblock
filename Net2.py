@@ -66,9 +66,9 @@ def generator():
 #########################################################
 
 
-class Net1(nn.Module):
+class Net1_plus(nn.Module):
     def __init__(self):
-        super(Net1, self).__init__()
+        super(Net1_plus, self).__init__()
         self.pooling=nn.AdaptiveAvgPool2d(1)
         #initial cnn:
         self.int = nn.Conv2d(3, 64, (3, 3), (1, 1), (1, 1))
@@ -367,6 +367,8 @@ class Net1(nn.Module):
         x=self.end_RB(x)
         x=self.toR(x)
         x+=LR
+        x[x < 0.0] = 0.0
+        x[x>1.0]=1.0
         return x
 
         
@@ -671,16 +673,14 @@ class Net2(nn.Module):
         x=self.end_RB(x)
         x=self.toR(x)
         x+=LR
-        x[x < 0.0] = 0.0
-        x[x>1.0]=1.0
         return x
 
         
         
         
-net1=Net1()
+net1=Net1_plus()
 net2=Net2()
-net1.load_state_dict(torch.load('real_net1.pt'))
+net1.load_state_dict(torch.load('real_net1_plus.pt'))
 net1.eval()
 ##initial:
 net2.int.weight.data=net1.int.weight.data
