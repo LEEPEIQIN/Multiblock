@@ -430,7 +430,7 @@ class Net1(nn.Module):
         
         
 net1=Net1()
-net1.load_state_dict(torch.load('real_net1.pt'))
+net1.load_state_dict(torch.load('real_net1_plus.pt'))
 net1.eval()
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
