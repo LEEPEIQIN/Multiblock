@@ -368,6 +368,8 @@ class Net1(nn.Module):
         x=self.end_RB(x)
         x=self.toR(x)
         x+=LR
+        x[x<0]=0
+        x[x>1]=1
         return x
 
     def _initialize_weights(self):
@@ -479,7 +481,7 @@ class Net1(nn.Module):
         
         
 net1=Net1()
-net1.load_state_dict(torch.load('real_net1.pt'))
+net1.load_state_dict(torch.load('real_net1_plus.pt'))
 net1.eval()
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -526,7 +528,7 @@ for epoch in range(200):
     PSNR=PSNR/n_test
     print(PSNR)
     del PSNR,n_test,temp_HR_2,temp_LR_2
-    torch.save(net1.state_dict(), 'real_net1.pt')
+    torch.save(net1.state_dict(), 'real_net1_plus.pt')
 print('Finished Training phase1')
 
-torch.save(net1.state_dict(), 'real_net1.pt')
+torch.save(net1.state_dict(), 'real_net1_plus.pt')
