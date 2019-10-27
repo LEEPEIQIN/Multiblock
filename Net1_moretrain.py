@@ -489,10 +489,10 @@ net1.to(device)
 
 
 criterion = nn.L1Loss()
-optimizer=torch.optim.Adam(net1.parameters(), lr=0.000001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
+optimizer=torch.optim.Adam(net1.parameters(), lr=0.00001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
 for epoch in range(200):
     running_loss=0.0
-    for i in range(300):
+    for i in range(1000):
         HR,LR=generator()
         HR=HR.to(device)
         LR=LR.to(device)
