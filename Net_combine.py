@@ -1534,12 +1534,12 @@ del net_plus
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 net_combine.to(device)
-
+p=[]
 best=0.0
 criterion = nn.L1Loss()
 optimizer=torch.optim.Adam(net_combine.parameters(), lr=0.0001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
-for epoch in range(20):
-    running_loss=0.0
+for epoch in range(10):
+    #running_loss=0.0
     for i in range(500):
         HR,LR=generator()
         HR=HR.to(device)
@@ -1549,11 +1549,11 @@ for epoch in range(20):
         Loss=criterion(outputs,HR)
         Loss.backward()
         optimizer.step()
-        running_loss+=Loss.item()
+        #running_loss+=Loss.item()
         
-        print('[%d, %5d] loss: %.3f' %
-             (epoch + 1, i + 1, running_loss))
-        running_loss = 0.0
+        #print('[%d, %5d] loss: %.3f' %
+        #     (epoch + 1, i + 1, running_loss))
+        #running_loss = 0.0
         del HR,LR,outputs
     n_test=15
     PSNR=0.0
@@ -1574,6 +1574,7 @@ for epoch in range(20):
             PSNR+=psnr(outputs,HR_test)
             del HR_test,LR_test,outputs
     PSNR=PSNR/n_test
+    p.append(PSNR)
     print(PSNR)
     if PSNR>best:
         best=PSNR
@@ -1584,8 +1585,8 @@ print('Finished Training phase1')
 
 criterion = nn.L1Loss()
 optimizer=torch.optim.Adam(net_combine.parameters(), lr=0.00001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
-for epoch in range(100):
-    running_loss=0.0
+for epoch in range(10):
+  #  running_loss=0.0
     for i in range(500):
         HR,LR=generator()
         HR=HR.to(device)
@@ -1595,11 +1596,11 @@ for epoch in range(100):
         Loss=criterion(outputs,HR)
         Loss.backward()
         optimizer.step()
-        running_loss+=Loss.item()
+       # running_loss+=Loss.item()
         
-        print('[%d, %5d] loss: %.3f' %
-             (epoch + 1, i + 1, running_loss))
-        running_loss = 0.0
+       # print('[%d, %5d] loss: %.3f' %
+       #      (epoch + 1, i + 1, running_loss))
+       # running_loss = 0.0
         del HR,LR,outputs
     n_test=15
     PSNR=0.0
@@ -1620,6 +1621,7 @@ for epoch in range(100):
             PSNR+=psnr(outputs,HR_test)
             del HR_test,LR_test,outputs
     PSNR=PSNR/n_test
+    p.append(PSNR)
     print(PSNR)
     if PSNR>best:
         best=PSNR
@@ -1627,3 +1629,5 @@ for epoch in range(100):
     del PSNR,n_test,temp_HR_2,temp_LR_2
     torch.save(net_combine.state_dict(), 'net_combine1.pt')
 print('Finished Training phase2')
+
+
