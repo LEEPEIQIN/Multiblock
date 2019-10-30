@@ -30,7 +30,7 @@ def generator():
     #given:
     HR_URL='2_HR'
     LR_URL='2_LR'
-    batch_size=16
+    batch_size=8
     image_size=120
     channel=3
     #genereting:
