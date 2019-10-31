@@ -1686,7 +1686,7 @@ for epoch in range(10):
         best=PSNR
     print(best)
     del PSNR,n_test,temp_HR_2,temp_LR_2
-    #torch.save(net_combine.state_dict(), 'net_combine1.pt')
+    torch.save(net_combine.state_dict(), 'net_combine1_test.pt')
 print('Finished Training phase1')
 
 criterion = nn.L1Loss()
@@ -1733,7 +1733,7 @@ for epoch in range(10):
         best=PSNR
     print(best)
     del PSNR,n_test,temp_HR_2,temp_LR_2
-    #torch.save(net_combine.state_dict(), 'net_combine1.pt')
+    torch.save(net_combine.state_dict(), 'net_combine1_test.pt')
 print('Finished Training phase2')
 
 
