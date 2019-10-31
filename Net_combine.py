@@ -331,6 +331,112 @@ class Net_plus(nn.Module):
         x[x < 0.0] = 0.0
         x[x>1.0]=1.0
         return x
+    def _initialize_weights(self):
+        init.orthogonal_(self.int.weight)
+        
+        #RB_1
+        init.orthogonal_(self.RB_1_conv1.weight)
+        init.orthogonal_(self.RB_1_conv2.weight)
+        init.orthogonal_(self.RB_1_1d1.weight)
+        init.orthogonal_(self.RB_1_1d2.weight)
+        #RB_2
+        init.orthogonal_(self.RB_2_conv1.weight)
+        init.orthogonal_(self.RB_2_conv2.weight)
+        init.orthogonal_(self.RB_2_1d1.weight)
+        init.orthogonal_(self.RB_2_1d2.weight)
+        #RB_3
+        init.orthogonal_(self.RB_3_conv1.weight)
+        init.orthogonal_(self.RB_3_conv2.weight)
+        init.orthogonal_(self.RB_3_1d1.weight)
+        init.orthogonal_(self.RB_3_1d2.weight)
+        #RB_4
+        init.orthogonal_(self.RB_4_conv1.weight)
+        init.orthogonal_(self.RB_4_conv2.weight)
+        init.orthogonal_(self.RB_4_1d1.weight)
+        init.orthogonal_(self.RB_4_1d2.weight)
+        #RB_5
+        init.orthogonal_(self.RB_5_conv1.weight)
+        init.orthogonal_(self.RB_5_conv2.weight)
+        init.orthogonal_(self.RB_5_1d1.weight)
+        init.orthogonal_(self.RB_5_1d2.weight)
+        #RB_6
+        init.orthogonal_(self.RB_6_conv1.weight)
+        init.orthogonal_(self.RB_6_conv2.weight)
+        init.orthogonal_(self.RB_6_1d1.weight)
+        init.orthogonal_(self.RB_6_1d2.weight)
+        #RB_7
+        init.orthogonal_(self.RB_7_conv1.weight)
+        init.orthogonal_(self.RB_7_conv2.weight)
+        init.orthogonal_(self.RB_7_1d1.weight)
+        init.orthogonal_(self.RB_7_1d2.weight)
+        #RB_8
+        init.orthogonal_(self.RB_8_conv1.weight)
+        init.orthogonal_(self.RB_8_conv2.weight)
+        init.orthogonal_(self.RB_8_1d1.weight)
+        init.orthogonal_(self.RB_8_1d2.weight)
+        #RB_9
+        init.orthogonal_(self.RB_9_conv1.weight)
+        init.orthogonal_(self.RB_9_conv2.weight)
+        init.orthogonal_(self.RB_9_1d1.weight)
+        init.orthogonal_(self.RB_9_1d2.weight)
+        #RB_10
+        init.orthogonal_(self.RB_10_conv1.weight)
+        init.orthogonal_(self.RB_10_conv2.weight)
+        init.orthogonal_(self.RB_10_1d1.weight)
+        init.orthogonal_(self.RB_10_1d2.weight)
+        #RB_11
+        init.orthogonal_(self.RB_11_conv1.weight)
+        init.orthogonal_(self.RB_11_conv2.weight)
+        init.orthogonal_(self.RB_11_1d1.weight)
+        init.orthogonal_(self.RB_11_1d2.weight)
+        #RB_12
+        init.orthogonal_(self.RB_12_conv1.weight)
+        init.orthogonal_(self.RB_12_conv2.weight)
+        init.orthogonal_(self.RB_12_1d1.weight)
+        init.orthogonal_(self.RB_12_1d2.weight)
+        #RB_13
+        init.orthogonal_(self.RB_13_conv1.weight)
+        init.orthogonal_(self.RB_13_conv2.weight)
+        init.orthogonal_(self.RB_13_1d1.weight)
+        init.orthogonal_(self.RB_13_1d2.weight)
+        #RB_14
+        init.orthogonal_(self.RB_14_conv1.weight)
+        init.orthogonal_(self.RB_14_conv2.weight)
+        init.orthogonal_(self.RB_14_1d1.weight)
+        init.orthogonal_(self.RB_14_1d2.weight)
+        #RB_15
+        init.orthogonal_(self.RB_15_conv1.weight)
+        init.orthogonal_(self.RB_15_conv2.weight)
+        init.orthogonal_(self.RB_15_1d1.weight)
+        init.orthogonal_(self.RB_15_1d2.weight)
+        #RB_16
+        init.orthogonal_(self.RB_16_conv1.weight)
+        init.orthogonal_(self.RB_16_conv2.weight)
+        init.orthogonal_(self.RB_16_1d1.weight)
+        init.orthogonal_(self.RB_16_1d2.weight)
+        #RB_17
+        #init.orthogonal_(self.RB_17_conv1.weight)
+        #init.orthogonal_(self.RB_17_conv2.weight)
+        #init.orthogonal_(self.RB_17_1d1.weight)
+        #init.orthogonal_(self.RB_17_1d2.weight)
+        #RB_18
+        #init.orthogonal_(self.RB_18_conv1.weight)
+        #init.orthogonal_(self.RB_18_conv2.weight)
+        #init.orthogonal_(self.RB_18_1d1.weight)
+        #init.orthogonal_(self.RB_18_1d2.weight)
+        #RB_19
+        #init.orthogonal_(self.RB_19_conv1.weight)
+        #init.orthogonal_(self.RB_19_conv2.weight)
+        #init.orthogonal_(self.RB_19_1d1.weight)
+        #init.orthogonal_(self.RB_19_1d2.weight)
+        #RB_20
+        #init.orthogonal_(self.RB_20_conv1.weight)
+        #init.orthogonal_(self.RB_20_conv2.weight)
+        #init.orthogonal_(self.RB_20_1d1.weight)
+        #init.orthogonal_(self.RB_20_1d2.weight)
+        
+        init.orthogonal_(self.end_RB.weight)
+        init.orthogonal_(self.toR.weight)
     
     
 
@@ -1064,8 +1170,8 @@ class Net_combine(nn.Module):
 net_combine=Net_combine()
     
 net_plus=Net_plus()
-net_plus.load_state_dict(torch.load('real_net1_plus.pt'))
-net_plus.eval()
+#net_plus.load_state_dict(torch.load('real_net1_plus.pt'))
+#net_plus.eval()
 
 net_combine.a1_int.weight.data=net_plus.int.weight.data
 net_combine.a1_int.bias.data=net_plus.int.bias.data
@@ -1224,8 +1330,8 @@ del net_plus
 
 
 net_plus=Net_plus()
-net_plus.load_state_dict(torch.load('real_net2_plus.pt'))
-net_plus.eval()
+#net_plus.load_state_dict(torch.load('real_net2_plus.pt'))
+#net_plus.eval()
 
 net_combine.a2_int.weight.data=net_plus.int.weight.data
 net_combine.a2_int.bias.data=net_plus.int.bias.data
@@ -1379,8 +1485,8 @@ net_combine.a2_RB_16_1d2.bias.data=net_plus.RB_16_1d2.bias.data
 del net_plus
 
 net_plus=Net_plus()
-net_plus.load_state_dict(torch.load('real_net3_plus.pt'))
-net_plus.eval()
+#net_plus.load_state_dict(torch.load('real_net3_plus.pt'))
+#net_plus.eval()
 
 net_combine.a3_int.weight.data=net_plus.int.weight.data
 net_combine.a3_int.bias.data=net_plus.int.bias.data
@@ -1580,7 +1686,7 @@ for epoch in range(10):
         best=PSNR
     print(best)
     del PSNR,n_test,temp_HR_2,temp_LR_2
-    torch.save(net_combine.state_dict(), 'net_combine1.pt')
+    #torch.save(net_combine.state_dict(), 'net_combine1.pt')
 print('Finished Training phase1')
 
 criterion = nn.L1Loss()
@@ -1627,7 +1733,7 @@ for epoch in range(10):
         best=PSNR
     print(best)
     del PSNR,n_test,temp_HR_2,temp_LR_2
-    torch.save(net_combine.state_dict(), 'net_combine1.pt')
+    #torch.save(net_combine.state_dict(), 'net_combine1.pt')
 print('Finished Training phase2')
 
 
