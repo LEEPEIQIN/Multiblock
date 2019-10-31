@@ -173,7 +173,7 @@ class Net_plus(nn.Module):
         #end cnn:
         self.end_RB=nn.Conv2d(64, 64, (3, 3), (1, 1), (1, 1))
         self.toR=nn.Conv2d(64, 3, (3, 3), (1, 1), (1, 1))
-       
+        self._initialize_weights()
 
     def forward(self, x):
         LR=x
