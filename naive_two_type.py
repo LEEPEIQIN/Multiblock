@@ -1638,7 +1638,7 @@ net_combine.a3_RB_16_1d2.bias.data=net_plus.RB_16_1d2.bias.data
 del net_plus
 
 net_combine.load_state_dict(torch.load('net_combine1_test.pt'))
-net_plus.eval()
+net_combine.eval()
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 net_combine.to(device)
@@ -1648,9 +1648,9 @@ p=[]
 best=0.0
 criterion = nn.L1Loss()
 optimizer=torch.optim.Adam(net_combine.parameters(), lr=0.00001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
-for epoch in range(20):
+for epoch in range(40):
     #running_loss=0.0
-    for i in range(1000):
+    for i in range(500):
         HR,LR=generator()
         HR=HR.to(device)
         LR=LR.to(device)
