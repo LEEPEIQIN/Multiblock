@@ -123,12 +123,11 @@ class RE_12conv(nn.Module):
 residual_12conv=RE_12conv()
 #########################
 criterion = nn.L1Loss()
-#optimizer=torch.optim.Adam(residual_12conv.parameters(), lr=0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
-optimizer=torch.optim.Adadelta(residual_12conv.parameters(), lr=1.0, rho=0.9, eps=1e-06, weight_decay=0)
+optimizer=torch.optim.Adam(residual_12conv.parameters(), lr=0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
  
 ##start train:
 p=[]
-for epoch in range(30):
+for epoch in range(20):
     running_loss=0.0
     for i in range(50):
         HR,LR=generator()
@@ -167,19 +166,43 @@ for epoch in range(30):
     del PSNR,n_test,temp_HR_2,temp_LR_2
 print('Finished Training')
 
-plt.plot(list(range(1,len(p)+1)), p)
-plt.title('12_conv')
-plt.xlabel('epoch')
-plt.ylabel('PSNR')
-plt.show
-##saving and loading:
-torch.save(residual_12conv.state_dict(), '/home/lee/Desktop/python/sillyman/RE_12.pt')
-
-residual_12conv= RE_12conv()
-residual_12conv.load_state_dict(torch.load('/home/lee/Desktop/python/sillyman/RE_12.pt'))
-residual_12conv.eval()
-
-#30.8868368090336
-
-#with torch.no_grad():
-#     outputs=residual_12conv(LR_test).squeeze()
+optimizer=torch.optim.Adam(residual_12conv.parameters(), lr=0.0001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
+p=[]
+for epoch in range(10):
+    running_loss=0.0
+    for i in range(50):
+        HR,LR=generator()
+        optimizer.zero_grad()
+        outputs=residual_12conv(LR)
+        Loss=criterion(outputs,HR)
+        Loss.backward()
+        optimizer.step()
+        running_loss+=Loss.item()
+        
+        print('[%d, %5d] loss: %.3f' %
+             (epoch + 1, i + 1, running_loss))
+        running_loss = 0.0
+        del HR,LR,Loss,outputs
+    n_test=15
+    PSNR=0.0
+    temp_HR_2=iter(HR_2_test)
+    temp_LR_2=iter(LR_2_test)
+    for t in range(n_test):
+        with torch.no_grad():
+            HR_test=temp_HR_2.next()[0].squeeze()
+            _,x,y=HR_test.size()
+            LR_test=temp_LR_2.next()[0]
+            if x>1500:
+                x=1500
+            if y>1500:
+                y=1500
+            HR_test=HR_test[:,0:x,0:y]
+            LR_test=LR_test[:,:,0:x,0:y]
+            outputs=residual_12conv(LR_test).squeeze()
+            PSNR+=psnr(outputs.data,HR_test)
+            del HR_test,LR_test,outputs
+    PSNR=PSNR/n_test
+    p.append(PSNR)
+    print(PSNR)
+    del PSNR,n_test,temp_HR_2,temp_LR_2
+print('Finished Training')
