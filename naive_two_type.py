@@ -17,12 +17,10 @@ import math
 def psnr(target, ref):
     # target:目标图像  ref:参考图像 
     # assume RGB image
-    target_data = np.array(target)
-    ref_data = np.array(ref)
-    diff = ref_data - target_data
-    diff = diff.flatten('C')
-    rmse = math.sqrt( np.mean(diff ** 2.) )
-    return 20*math.log10(1.0/rmse)
+    diff = ref- target
+    diff = diff.reshape(-1)
+    rmse = torch.sqrt((diff ** 2.).mean())
+    return 20*torch.log10(1.0/rmse)
 
 #test loader:
 test_LR = torchvision.datasets.ImageFolder(root='2_LR_test', transform=transforms.ToTensor())
@@ -121,6 +119,9 @@ class RE_12conv(nn.Module):
         init.normal_(self.end.weight, mean=0.0, std=0.1)
         
 residual_12conv=RE_12conv()
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+residual_12conv.to(device)
+
 #########################
 criterion = nn.L1Loss()
 optimizer=torch.optim.Adam(residual_12conv.parameters(), lr=0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
@@ -131,6 +132,8 @@ for epoch in range(20):
     running_loss=0.0
     for i in range(50):
         HR,LR=generator()
+        HR=HR.to(device)
+        LR=LR.to(device)
         optimizer.zero_grad()
         outputs=residual_12conv(LR)
         Loss=criterion(outputs,HR)
@@ -155,8 +158,8 @@ for epoch in range(20):
                 x=1500
             if y>1500:
                 y=1500
-            HR_test=HR_test[:,0:x,0:y]
-            LR_test=LR_test[:,:,0:x,0:y]
+            HR_test=HR_test[:,0:x,0:y].to(device)
+            LR_test=LR_test[:,:,0:x,0:y].to(device)
             outputs=residual_12conv(LR_test).squeeze()
             PSNR+=psnr(outputs.data,HR_test)
             del HR_test,LR_test,outputs
@@ -172,6 +175,8 @@ for epoch in range(10):
     running_loss=0.0
     for i in range(50):
         HR,LR=generator()
+        HR=HR.to(device)
+        LR=LR.to(device)
         optimizer.zero_grad()
         outputs=residual_12conv(LR)
         Loss=criterion(outputs,HR)
@@ -196,8 +201,8 @@ for epoch in range(10):
                 x=1500
             if y>1500:
                 y=1500
-            HR_test=HR_test[:,0:x,0:y]
-            LR_test=LR_test[:,:,0:x,0:y]
+            HR_test=HR_test[:,0:x,0:y].to(device)
+            LR_test=LR_test[:,:,0:x,0:y].to(device)
             outputs=residual_12conv(LR_test).squeeze()
             PSNR+=psnr(outputs.data,HR_test)
             del HR_test,LR_test,outputs
