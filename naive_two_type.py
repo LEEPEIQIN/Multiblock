@@ -25,15 +25,15 @@ def psnr(target, ref):
     return 20*math.log10(1.0/rmse)
 
 #test loader:
-test_LR = torchvision.datasets.ImageFolder(root='/home/lee/Desktop/python/sillyman/2_LR_test', transform=transforms.ToTensor())
+test_LR = torchvision.datasets.ImageFolder(root='2_LR_test', transform=transforms.ToTensor())
 LR_2_test = torch.utils.data.DataLoader(test_LR, batch_size=1, shuffle=False, num_workers=0)
-test_HR = torchvision.datasets.ImageFolder(root='/home/lee/Desktop/python/sillyman/2_HR_test', transform=transforms.ToTensor())
+test_HR = torchvision.datasets.ImageFolder(root='2_HR_test', transform=transforms.ToTensor())
 HR_2_test = torch.utils.data.DataLoader(test_HR, batch_size=1, shuffle=False, num_workers=0)
 ## train set generator:
 def generator():
     #given:
-    HR_URL='/home/lee/Desktop/python/sillyman/2_HR'
-    LR_URL='/home/lee/Desktop/python/sillyman/2_LR'
+    HR_URL='2_HR'
+    LR_URL='2_LR'
     batch_size=64
     image_size=61
     channel=3
