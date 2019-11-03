@@ -503,8 +503,8 @@ LR_set=torchvision.datasets.ImageFolder(root=LR_URL,transform=transforms.ToTenso
 LR_loader=torch.utils.data.DataLoader(LR_set,batch_size=1,shuffle=False,num_workers=0)
 LR_loader=iter(LR_loader)
 
-os.mkdir('inverse_analysis_test')
-os.chdir('inverse_analysis_test')
+os.mkdir('inverse_analysis_test1')
+os.chdir('inverse_analysis_test1')
 
 wd=os.getcwd()
 os.chdir(cwd)
