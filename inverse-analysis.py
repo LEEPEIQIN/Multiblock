@@ -1,0 +1,574 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import torch
+import torchvision
+import torchvision.transforms as transforms
+import torch.nn as nn
+import common
+import os
+
+
+net_combine=common.Net_combine()
+net_combine.load_state_dict(torch.load('net_combine1.pt'))
+net_combine.eval()
+
+####################################################################
+
+net_plus1=common.Net_plus()
+
+net_plus1.int.weight.data=net_combine.a1_int.weight.data
+net_plus1.int.bias.data=net_combine.a1_int.bias.data
+#RB1
+net_plus1.RB_1_conv1.weight.data=net_combine.a1_RB_1_conv1.weight.data  
+net_plus1.RB_1_conv1.bias.data=net_combine.a1_RB_1_conv1.bias.data
+net_plus1.RB_1_conv2.weight.data=net_combine.a1_RB_1_conv2.weight.data
+net_plus1.RB_1_conv2.bias.data=net_combine.a1_RB_1_conv2.bias.data
+net_plus1.RB_1_1d1.weight.data=net_combine.a1_RB_1_1d1.weight.data
+net_plus1.RB_1_1d1.bias.data=net_combine.a1_RB_1_1d1.bias.data
+net_plus1.RB_1_1d2.weight.data=net_combine.a1_RB_1_1d2.weight.data
+net_plus1.RB_1_1d2.bias.data=net_combine.a1_RB_1_1d2.bias.data
+#RB1
+net_plus1.RB_2_conv1.weight.data=net_combine.a1_RB_2_conv1.weight.data  
+net_plus1.RB_2_conv1.bias.data=net_combine.a1_RB_2_conv1.bias.data
+net_plus1.RB_2_conv2.weight.data=net_combine.a1_RB_2_conv2.weight.data
+net_plus1.RB_2_conv2.bias.data=net_combine.a1_RB_2_conv2.bias.data
+net_plus1.RB_2_1d1.weight.data=net_combine.a1_RB_2_1d1.weight.data
+net_plus1.RB_2_1d1.bias.data=net_combine.a1_RB_2_1d1.bias.data
+net_plus1.RB_2_1d2.weight.data=net_combine.a1_RB_2_1d2.weight.data
+net_plus1.RB_2_1d2.bias.data=net_combine.a1_RB_2_1d2.bias.data
+#RB1
+net_plus1.RB_3_conv1.weight.data=net_combine.a1_RB_3_conv1.weight.data  
+net_plus1.RB_3_conv1.bias.data=net_combine.a1_RB_3_conv1.bias.data
+net_plus1.RB_3_conv2.weight.data=net_combine.a1_RB_3_conv2.weight.data
+net_plus1.RB_3_conv2.bias.data=net_combine.a1_RB_3_conv2.bias.data
+net_plus1.RB_3_1d1.weight.data=net_combine.a1_RB_3_1d1.weight.data
+net_plus1.RB_3_1d1.bias.data=net_combine.a1_RB_3_1d1.bias.data
+net_plus1.RB_3_1d2.weight.data=net_combine.a1_RB_3_1d2.weight.data
+net_plus1.RB_3_1d2.bias.data=net_combine.a1_RB_3_1d2.bias.data
+#RB1
+net_plus1.RB_4_conv1.weight.data=net_combine.a1_RB_4_conv1.weight.data  
+net_plus1.RB_4_conv1.bias.data=net_combine.a1_RB_4_conv1.bias.data
+net_plus1.RB_4_conv2.weight.data=net_combine.a1_RB_4_conv2.weight.data
+net_plus1.RB_4_conv2.bias.data=net_combine.a1_RB_4_conv2.bias.data
+net_plus1.RB_4_1d1.weight.data=net_combine.a1_RB_4_1d1.weight.data
+net_plus1.RB_4_1d1.bias.data=net_combine.a1_RB_4_1d1.bias.data
+net_plus1.RB_4_1d2.weight.data=net_combine.a1_RB_4_1d2.weight.data
+net_plus1.RB_4_1d2.bias.data=net_combine.a1_RB_4_1d2.bias.data
+#RB1
+net_plus1.RB_5_conv1.weight.data=net_combine.a1_RB_5_conv1.weight.data  
+net_plus1.RB_5_conv1.bias.data=net_combine.a1_RB_5_conv1.bias.data
+net_plus1.RB_5_conv2.weight.data=net_combine.a1_RB_5_conv2.weight.data
+net_plus1.RB_5_conv2.bias.data=net_combine.a1_RB_5_conv2.bias.data
+net_plus1.RB_5_1d1.weight.data=net_combine.a1_RB_5_1d1.weight.data
+net_plus1.RB_5_1d1.bias.data=net_combine.a1_RB_5_1d1.bias.data
+net_plus1.RB_5_1d2.weight.data=net_combine.a1_RB_5_1d2.weight.data
+net_plus1.RB_5_1d2.bias.data=net_combine.a1_RB_5_1d2.bias.data
+#RB1
+net_plus1.RB_6_conv1.weight.data=net_combine.a1_RB_6_conv1.weight.data  
+net_plus1.RB_6_conv1.bias.data=net_combine.a1_RB_6_conv1.bias.data
+net_plus1.RB_6_conv2.weight.data=net_combine.a1_RB_6_conv2.weight.data
+net_plus1.RB_6_conv2.bias.data=net_combine.a1_RB_6_conv2.bias.data
+net_plus1.RB_6_1d1.weight.data=net_combine.a1_RB_6_1d1.weight.data
+net_plus1.RB_6_1d1.bias.data=net_combine.a1_RB_6_1d1.bias.data
+net_plus1.RB_6_1d2.weight.data=net_combine.a1_RB_6_1d2.weight.data
+net_plus1.RB_6_1d2.bias.data=net_combine.a1_RB_6_1d2.bias.data
+#RB1
+net_plus1.RB_7_conv1.weight.data=net_combine.a1_RB_7_conv1.weight.data  
+net_plus1.RB_7_conv1.bias.data=net_combine.a1_RB_7_conv1.bias.data
+net_plus1.RB_7_conv2.weight.data=net_combine.a1_RB_7_conv2.weight.data
+net_plus1.RB_7_conv2.bias.data=net_combine.a1_RB_7_conv2.bias.data
+net_plus1.RB_7_1d1.weight.data=net_combine.a1_RB_7_1d1.weight.data
+net_plus1.RB_7_1d1.bias.data=net_combine.a1_RB_7_1d1.bias.data
+net_plus1.RB_7_1d2.weight.data=net_combine.a1_RB_7_1d2.weight.data
+net_plus1.RB_7_1d2.bias.data=net_combine.a1_RB_7_1d2.bias.data
+#RB1
+net_plus1.RB_8_conv1.weight.data=net_combine.a1_RB_8_conv1.weight.data  
+net_plus1.RB_8_conv1.bias.data=net_combine.a1_RB_8_conv1.bias.data
+net_plus1.RB_8_conv2.weight.data=net_combine.a1_RB_8_conv2.weight.data
+net_plus1.RB_8_conv2.bias.data=net_combine.a1_RB_8_conv2.bias.data
+net_plus1.RB_8_1d1.weight.data=net_combine.a1_RB_8_1d1.weight.data
+net_plus1.RB_8_1d1.bias.data=net_combine.a1_RB_8_1d1.bias.data
+net_plus1.RB_8_1d2.weight.data=net_combine.a1_RB_8_1d2.weight.data
+net_plus1.RB_8_1d2.bias.data=net_combine.a1_RB_8_1d2.bias.data
+#RB1
+net_plus1.RB_9_conv1.weight.data=net_combine.a1_RB_9_conv1.weight.data  
+net_plus1.RB_9_conv1.bias.data=net_combine.a1_RB_9_conv1.bias.data
+net_plus1.RB_9_conv2.weight.data=net_combine.a1_RB_9_conv2.weight.data
+net_plus1.RB_9_conv2.bias.data=net_combine.a1_RB_9_conv2.bias.data
+net_plus1.RB_9_1d1.weight.data=net_combine.a1_RB_9_1d1.weight.data
+net_plus1.RB_9_1d1.bias.data=net_combine.a1_RB_9_1d1.bias.data
+net_plus1.RB_9_1d2.weight.data=net_combine.a1_RB_9_1d2.weight.data
+net_plus1.RB_9_1d2.bias.data=net_combine.a1_RB_9_1d2.bias.data
+#RB1
+net_plus1.RB_10_conv1.weight.data=net_combine.a1_RB_10_conv1.weight.data  
+net_plus1.RB_10_conv1.bias.data=net_combine.a1_RB_10_conv1.bias.data
+net_plus1.RB_10_conv2.weight.data=net_combine.a1_RB_10_conv2.weight.data
+net_plus1.RB_10_conv2.bias.data=net_combine.a1_RB_10_conv2.bias.data
+net_plus1.RB_10_1d1.weight.data=net_combine.a1_RB_10_1d1.weight.data
+net_plus1.RB_10_1d1.bias.data=net_combine.a1_RB_10_1d1.bias.data
+net_plus1.RB_10_1d2.weight.data=net_combine.a1_RB_10_1d2.weight.data
+net_plus1.RB_10_1d2.bias.data=net_combine.a1_RB_10_1d2.bias.data
+#RB1
+net_plus1.RB_11_conv1.weight.data=net_combine.a1_RB_11_conv1.weight.data  
+net_plus1.RB_11_conv1.bias.data=net_combine.a1_RB_11_conv1.bias.data
+net_plus1.RB_11_conv2.weight.data=net_combine.a1_RB_11_conv2.weight.data
+net_plus1.RB_11_conv2.bias.data=net_combine.a1_RB_11_conv2.bias.data
+net_plus1.RB_11_1d1.weight.data=net_combine.a1_RB_11_1d1.weight.data
+net_plus1.RB_11_1d1.bias.data=net_combine.a1_RB_11_1d1.bias.data
+net_plus1.RB_11_1d2.weight.data=net_combine.a1_RB_11_1d2.weight.data
+net_plus1.RB_11_1d2.bias.data=net_combine.a1_RB_11_1d2.bias.data
+#RB1
+net_plus1.RB_12_conv1.weight.data=net_combine.a1_RB_12_conv1.weight.data  
+net_plus1.RB_12_conv1.bias.data=net_combine.a1_RB_12_conv1.bias.data
+net_plus1.RB_12_conv2.weight.data=net_combine.a1_RB_12_conv2.weight.data
+net_plus1.RB_12_conv2.bias.data=net_combine.a1_RB_12_conv2.bias.data
+net_plus1.RB_12_1d1.weight.data=net_combine.a1_RB_12_1d1.weight.data
+net_plus1.RB_12_1d1.bias.data=net_combine.a1_RB_12_1d1.bias.data
+net_plus1.RB_12_1d2.weight.data=net_combine.a1_RB_12_1d2.weight.data
+net_plus1.RB_12_1d2.bias.data=net_combine.a1_RB_12_1d2.bias.data
+#RB1
+net_plus1.RB_13_conv1.weight.data=net_combine.a1_RB_13_conv1.weight.data  
+net_plus1.RB_13_conv1.bias.data=net_combine.a1_RB_13_conv1.bias.data
+net_plus1.RB_13_conv2.weight.data=net_combine.a1_RB_13_conv2.weight.data
+net_plus1.RB_13_conv2.bias.data=net_combine.a1_RB_13_conv2.bias.data
+net_plus1.RB_13_1d1.weight.data=net_combine.a1_RB_13_1d1.weight.data
+net_plus1.RB_13_1d1.bias.data=net_combine.a1_RB_13_1d1.bias.data
+net_plus1.RB_13_1d2.weight.data=net_combine.a1_RB_13_1d2.weight.data
+net_plus1.RB_13_1d2.bias.data=net_combine.a1_RB_13_1d2.bias.data
+#RB1
+net_plus1.RB_14_conv1.weight.data=net_combine.a1_RB_14_conv1.weight.data  
+net_plus1.RB_14_conv1.bias.data=net_combine.a1_RB_14_conv1.bias.data
+net_plus1.RB_14_conv2.weight.data=net_combine.a1_RB_14_conv2.weight.data
+net_plus1.RB_14_conv2.bias.data=net_combine.a1_RB_14_conv2.bias.data
+net_plus1.RB_14_1d1.weight.data=net_combine.a1_RB_14_1d1.weight.data
+net_plus1.RB_14_1d1.bias.data=net_combine.a1_RB_14_1d1.bias.data
+net_plus1.RB_14_1d2.weight.data=net_combine.a1_RB_14_1d2.weight.data
+net_plus1.RB_14_1d2.bias.data=net_combine.a1_RB_14_1d2.bias.data
+#RB1
+net_plus1.RB_15_conv1.weight.data=net_combine.a1_RB_15_conv1.weight.data  
+net_plus1.RB_15_conv1.bias.data=net_combine.a1_RB_15_conv1.bias.data
+net_plus1.RB_15_conv2.weight.data=net_combine.a1_RB_15_conv2.weight.data
+net_plus1.RB_15_conv2.bias.data=net_combine.a1_RB_15_conv2.bias.data
+net_plus1.RB_15_1d1.weight.data=net_combine.a1_RB_15_1d1.weight.data
+net_plus1.RB_15_1d1.bias.data=net_combine.a1_RB_15_1d1.bias.data
+net_plus1.RB_15_1d2.weight.data=net_combine.a1_RB_15_1d2.weight.data
+net_plus1.RB_15_1d2.bias.data=net_combine.a1_RB_15_1d2.bias.data
+#RB1
+net_plus1.RB_16_conv1.weight.data=net_combine.a1_RB_16_conv1.weight.data  
+net_plus1.RB_16_conv1.bias.data=net_combine.a1_RB_16_conv1.bias.data
+net_plus1.RB_16_conv2.weight.data=net_combine.a1_RB_16_conv2.weight.data
+net_plus1.RB_16_conv2.bias.data=net_combine.a1_RB_16_conv2.bias.data
+net_plus1.RB_16_1d1.weight.data=net_combine.a1_RB_16_1d1.weight.data
+net_plus1.RB_16_1d1.bias.data=net_combine.a1_RB_16_1d1.bias.data
+net_plus1.RB_16_1d2.weight.data=net_combine.a1_RB_16_1d2.weight.data
+net_plus1.RB_16_1d2.bias.data=net_combine.a1_RB_16_1d2.bias.data
+#end
+net_plus1.end_RB.weight.data=net_combine.a1_end_RB.weight.data
+net_plus1.end_RB.bias.data=net_combine.a1_end_RB.bias.data
+net_plus1.toR.weight.data=net_combine.a1_toR.weight.data
+net_plus1.toR.bias.data=net_combine.a1_toR.bias.dat1
+################################################################################################
+net_plus2=common.Net_plus()
+
+net_plus2.int.weight.data=net_combine.a2_int.weight.data
+net_plus2.int.bias.data=net_combine.a2_int.bias.data
+#RB1
+net_plus2.RB_1_conv1.weight.data=net_combine.a2_RB_1_conv1.weight.data  
+net_plus2.RB_1_conv1.bias.data=net_combine.a2_RB_1_conv1.bias.data
+net_plus2.RB_1_conv2.weight.data=net_combine.a2_RB_1_conv2.weight.data
+net_plus2.RB_1_conv2.bias.data=net_combine.a2_RB_1_conv2.bias.data
+net_plus2.RB_1_1d1.weight.data=net_combine.a2_RB_1_1d1.weight.data
+net_plus2.RB_1_1d1.bias.data=net_combine.a2_RB_1_1d1.bias.data
+net_plus2.RB_1_1d2.weight.data=net_combine.a2_RB_1_1d2.weight.data
+net_plus2.RB_1_1d2.bias.data=net_combine.a2_RB_1_1d2.bias.data
+#RB1
+net_plus2.RB_2_conv1.weight.data=net_combine.a2_RB_2_conv1.weight.data  
+net_plus2.RB_2_conv1.bias.data=net_combine.a2_RB_2_conv1.bias.data
+net_plus2.RB_2_conv2.weight.data=net_combine.a2_RB_2_conv2.weight.data
+net_plus2.RB_2_conv2.bias.data=net_combine.a2_RB_2_conv2.bias.data
+net_plus2.RB_2_1d1.weight.data=net_combine.a2_RB_2_1d1.weight.data
+net_plus2.RB_2_1d1.bias.data=net_combine.a2_RB_2_1d1.bias.data
+net_plus2.RB_2_1d2.weight.data=net_combine.a2_RB_2_1d2.weight.data
+net_plus2.RB_2_1d2.bias.data=net_combine.a2_RB_2_1d2.bias.data
+#RB1
+net_plus2.RB_3_conv1.weight.data=net_combine.a2_RB_3_conv1.weight.data  
+net_plus2.RB_3_conv1.bias.data=net_combine.a2_RB_3_conv1.bias.data
+net_plus2.RB_3_conv2.weight.data=net_combine.a2_RB_3_conv2.weight.data
+net_plus2.RB_3_conv2.bias.data=net_combine.a2_RB_3_conv2.bias.data
+net_plus2.RB_3_1d1.weight.data=net_combine.a2_RB_3_1d1.weight.data
+net_plus2.RB_3_1d1.bias.data=net_combine.a2_RB_3_1d1.bias.data
+net_plus2.RB_3_1d2.weight.data=net_combine.a2_RB_3_1d2.weight.data
+net_plus2.RB_3_1d2.bias.data=net_combine.a2_RB_3_1d2.bias.data
+#RB1
+net_plus2.RB_4_conv1.weight.data=net_combine.a2_RB_4_conv1.weight.data  
+net_plus2.RB_4_conv1.bias.data=net_combine.a2_RB_4_conv1.bias.data
+net_plus2.RB_4_conv2.weight.data=net_combine.a2_RB_4_conv2.weight.data
+net_plus2.RB_4_conv2.bias.data=net_combine.a2_RB_4_conv2.bias.data
+net_plus2.RB_4_1d1.weight.data=net_combine.a2_RB_4_1d1.weight.data
+net_plus2.RB_4_1d1.bias.data=net_combine.a2_RB_4_1d1.bias.data
+net_plus2.RB_4_1d2.weight.data=net_combine.a2_RB_4_1d2.weight.data
+net_plus2.RB_4_1d2.bias.data=net_combine.a2_RB_4_1d2.bias.data
+#RB1
+net_plus2.RB_5_conv1.weight.data=net_combine.a2_RB_5_conv1.weight.data  
+net_plus2.RB_5_conv1.bias.data=net_combine.a2_RB_5_conv1.bias.data
+net_plus2.RB_5_conv2.weight.data=net_combine.a2_RB_5_conv2.weight.data
+net_plus2.RB_5_conv2.bias.data=net_combine.a2_RB_5_conv2.bias.data
+net_plus2.RB_5_1d1.weight.data=net_combine.a2_RB_5_1d1.weight.data
+net_plus2.RB_5_1d1.bias.data=net_combine.a2_RB_5_1d1.bias.data
+net_plus2.RB_5_1d2.weight.data=net_combine.a2_RB_5_1d2.weight.data
+net_plus2.RB_5_1d2.bias.data=net_combine.a2_RB_5_1d2.bias.data
+#RB1
+net_plus2.RB_6_conv1.weight.data=net_combine.a2_RB_6_conv1.weight.data  
+net_plus2.RB_6_conv1.bias.data=net_combine.a2_RB_6_conv1.bias.data
+net_plus2.RB_6_conv2.weight.data=net_combine.a2_RB_6_conv2.weight.data
+net_plus2.RB_6_conv2.bias.data=net_combine.a2_RB_6_conv2.bias.data
+net_plus2.RB_6_1d1.weight.data=net_combine.a2_RB_6_1d1.weight.data
+net_plus2.RB_6_1d1.bias.data=net_combine.a2_RB_6_1d1.bias.data
+net_plus2.RB_6_1d2.weight.data=net_combine.a2_RB_6_1d2.weight.data
+net_plus2.RB_6_1d2.bias.data=net_combine.a2_RB_6_1d2.bias.data
+#RB1
+net_plus2.RB_7_conv1.weight.data=net_combine.a2_RB_7_conv1.weight.data  
+net_plus2.RB_7_conv1.bias.data=net_combine.a2_RB_7_conv1.bias.data
+net_plus2.RB_7_conv2.weight.data=net_combine.a2_RB_7_conv2.weight.data
+net_plus2.RB_7_conv2.bias.data=net_combine.a2_RB_7_conv2.bias.data
+net_plus2.RB_7_1d1.weight.data=net_combine.a2_RB_7_1d1.weight.data
+net_plus2.RB_7_1d1.bias.data=net_combine.a2_RB_7_1d1.bias.data
+net_plus2.RB_7_1d2.weight.data=net_combine.a2_RB_7_1d2.weight.data
+net_plus2.RB_7_1d2.bias.data=net_combine.a2_RB_7_1d2.bias.data
+#RB1
+net_plus2.RB_8_conv1.weight.data=net_combine.a2_RB_8_conv1.weight.data  
+net_plus2.RB_8_conv1.bias.data=net_combine.a2_RB_8_conv1.bias.data
+net_plus2.RB_8_conv2.weight.data=net_combine.a2_RB_8_conv2.weight.data
+net_plus2.RB_8_conv2.bias.data=net_combine.a2_RB_8_conv2.bias.data
+net_plus2.RB_8_1d1.weight.data=net_combine.a2_RB_8_1d1.weight.data
+net_plus2.RB_8_1d1.bias.data=net_combine.a2_RB_8_1d1.bias.data
+net_plus2.RB_8_1d2.weight.data=net_combine.a2_RB_8_1d2.weight.data
+net_plus2.RB_8_1d2.bias.data=net_combine.a2_RB_8_1d2.bias.data
+#RB1
+net_plus2.RB_9_conv1.weight.data=net_combine.a2_RB_9_conv1.weight.data  
+net_plus2.RB_9_conv1.bias.data=net_combine.a2_RB_9_conv1.bias.data
+net_plus2.RB_9_conv2.weight.data=net_combine.a2_RB_9_conv2.weight.data
+net_plus2.RB_9_conv2.bias.data=net_combine.a2_RB_9_conv2.bias.data
+net_plus2.RB_9_1d1.weight.data=net_combine.a2_RB_9_1d1.weight.data
+net_plus2.RB_9_1d1.bias.data=net_combine.a2_RB_9_1d1.bias.data
+net_plus2.RB_9_1d2.weight.data=net_combine.a2_RB_9_1d2.weight.data
+net_plus2.RB_9_1d2.bias.data=net_combine.a2_RB_9_1d2.bias.data
+#RB1
+net_plus2.RB_10_conv1.weight.data=net_combine.a2_RB_10_conv1.weight.data  
+net_plus2.RB_10_conv1.bias.data=net_combine.a2_RB_10_conv1.bias.data
+net_plus2.RB_10_conv2.weight.data=net_combine.a2_RB_10_conv2.weight.data
+net_plus2.RB_10_conv2.bias.data=net_combine.a2_RB_10_conv2.bias.data
+net_plus2.RB_10_1d1.weight.data=net_combine.a2_RB_10_1d1.weight.data
+net_plus2.RB_10_1d1.bias.data=net_combine.a2_RB_10_1d1.bias.data
+net_plus2.RB_10_1d2.weight.data=net_combine.a2_RB_10_1d2.weight.data
+net_plus2.RB_10_1d2.bias.data=net_combine.a2_RB_10_1d2.bias.data
+#RB1
+net_plus2.RB_11_conv1.weight.data=net_combine.a2_RB_11_conv1.weight.data  
+net_plus2.RB_11_conv1.bias.data=net_combine.a2_RB_11_conv1.bias.data
+net_plus2.RB_11_conv2.weight.data=net_combine.a2_RB_11_conv2.weight.data
+net_plus2.RB_11_conv2.bias.data=net_combine.a2_RB_11_conv2.bias.data
+net_plus2.RB_11_1d1.weight.data=net_combine.a2_RB_11_1d1.weight.data
+net_plus2.RB_11_1d1.bias.data=net_combine.a2_RB_11_1d1.bias.data
+net_plus2.RB_11_1d2.weight.data=net_combine.a2_RB_11_1d2.weight.data
+net_plus2.RB_11_1d2.bias.data=net_combine.a2_RB_11_1d2.bias.data
+#RB1
+net_plus2.RB_12_conv1.weight.data=net_combine.a2_RB_12_conv1.weight.data  
+net_plus2.RB_12_conv1.bias.data=net_combine.a2_RB_12_conv1.bias.data
+net_plus2.RB_12_conv2.weight.data=net_combine.a2_RB_12_conv2.weight.data
+net_plus2.RB_12_conv2.bias.data=net_combine.a2_RB_12_conv2.bias.data
+net_plus2.RB_12_1d1.weight.data=net_combine.a2_RB_12_1d1.weight.data
+net_plus2.RB_12_1d1.bias.data=net_combine.a2_RB_12_1d1.bias.data
+net_plus2.RB_12_1d2.weight.data=net_combine.a2_RB_12_1d2.weight.data
+net_plus2.RB_12_1d2.bias.data=net_combine.a2_RB_12_1d2.bias.data
+#RB1
+net_plus2.RB_13_conv1.weight.data=net_combine.a2_RB_13_conv1.weight.data  
+net_plus2.RB_13_conv1.bias.data=net_combine.a2_RB_13_conv1.bias.data
+net_plus2.RB_13_conv2.weight.data=net_combine.a2_RB_13_conv2.weight.data
+net_plus2.RB_13_conv2.bias.data=net_combine.a2_RB_13_conv2.bias.data
+net_plus2.RB_13_1d1.weight.data=net_combine.a2_RB_13_1d1.weight.data
+net_plus2.RB_13_1d1.bias.data=net_combine.a2_RB_13_1d1.bias.data
+net_plus2.RB_13_1d2.weight.data=net_combine.a2_RB_13_1d2.weight.data
+net_plus2.RB_13_1d2.bias.data=net_combine.a2_RB_13_1d2.bias.data
+#RB1
+net_plus2.RB_14_conv1.weight.data=net_combine.a2_RB_14_conv1.weight.data  
+net_plus2.RB_14_conv1.bias.data=net_combine.a2_RB_14_conv1.bias.data
+net_plus2.RB_14_conv2.weight.data=net_combine.a2_RB_14_conv2.weight.data
+net_plus2.RB_14_conv2.bias.data=net_combine.a2_RB_14_conv2.bias.data
+net_plus2.RB_14_1d1.weight.data=net_combine.a2_RB_14_1d1.weight.data
+net_plus2.RB_14_1d1.bias.data=net_combine.a2_RB_14_1d1.bias.data
+net_plus2.RB_14_1d2.weight.data=net_combine.a2_RB_14_1d2.weight.data
+net_plus2.RB_14_1d2.bias.data=net_combine.a2_RB_14_1d2.bias.data
+#RB1
+net_plus2.RB_15_conv1.weight.data=net_combine.a2_RB_15_conv1.weight.data  
+net_plus2.RB_15_conv1.bias.data=net_combine.a2_RB_15_conv1.bias.data
+net_plus2.RB_15_conv2.weight.data=net_combine.a2_RB_15_conv2.weight.data
+net_plus2.RB_15_conv2.bias.data=net_combine.a2_RB_15_conv2.bias.data
+net_plus2.RB_15_1d1.weight.data=net_combine.a2_RB_15_1d1.weight.data
+net_plus2.RB_15_1d1.bias.data=net_combine.a2_RB_15_1d1.bias.data
+net_plus2.RB_15_1d2.weight.data=net_combine.a2_RB_15_1d2.weight.data
+net_plus2.RB_15_1d2.bias.data=net_combine.a2_RB_15_1d2.bias.data
+#RB1
+net_plus2.RB_16_conv1.weight.data=net_combine.a2_RB_16_conv1.weight.data  
+net_plus2.RB_16_conv1.bias.data=net_combine.a2_RB_16_conv1.bias.data
+net_plus2.RB_16_conv2.weight.data=net_combine.a2_RB_16_conv2.weight.data
+net_plus2.RB_16_conv2.bias.data=net_combine.a2_RB_16_conv2.bias.data
+net_plus2.RB_16_1d1.weight.data=net_combine.a2_RB_16_1d1.weight.data
+net_plus2.RB_16_1d1.bias.data=net_combine.a2_RB_16_1d1.bias.data
+net_plus2.RB_16_1d2.weight.data=net_combine.a2_RB_16_1d2.weight.data
+net_plus2.RB_16_1d2.bias.data=net_combine.a2_RB_16_1d2.bias.data
+#end
+net_plus2.end_RB.weight.data=net_combine.a2_end_RB.weight.data
+net_plus2.end_RB.bias.data=net_combine.a2_end_RB.bias.data
+net_plus2.toR.weight.data=net_combine.a2_toR.weight.data
+net_plus2.toR.bias.data=net_combine.a2_toR.bias.dat1
+
+###################################################################################
+net_plus3=common.Net_plus()
+
+net_plus3.int.weight.data=net_combine.a1_int.weight.data
+net_plus3.int.bias.data=net_combine.a1_int.bias.data
+#RB1
+net_plus3.RB_1_conv1.weight.data=net_combine.a3_RB_1_conv1.weight.data  
+net_plus3.RB_1_conv1.bias.data=net_combine.a3_RB_1_conv1.bias.data
+net_plus3.RB_1_conv2.weight.data=net_combine.a3_RB_1_conv2.weight.data
+net_plus3.RB_1_conv2.bias.data=net_combine.a3_RB_1_conv2.bias.data
+net_plus3.RB_1_1d1.weight.data=net_combine.a3_RB_1_1d1.weight.data
+net_plus3.RB_1_1d1.bias.data=net_combine.a3_RB_1_1d1.bias.data
+net_plus3.RB_1_1d2.weight.data=net_combine.a3_RB_1_1d2.weight.data
+net_plus3.RB_1_1d2.bias.data=net_combine.a3_RB_1_1d2.bias.data
+#RB1
+net_plus3.RB_2_conv1.weight.data=net_combine.a3_RB_2_conv1.weight.data  
+net_plus3.RB_2_conv1.bias.data=net_combine.a3_RB_2_conv1.bias.data
+net_plus3.RB_2_conv2.weight.data=net_combine.a3_RB_2_conv2.weight.data
+net_plus3.RB_2_conv2.bias.data=net_combine.a3_RB_2_conv2.bias.data
+net_plus3.RB_2_1d1.weight.data=net_combine.a3_RB_2_1d1.weight.data
+net_plus3.RB_2_1d1.bias.data=net_combine.a3_RB_2_1d1.bias.data
+net_plus3.RB_2_1d2.weight.data=net_combine.a3_RB_2_1d2.weight.data
+net_plus3.RB_2_1d2.bias.data=net_combine.a3_RB_2_1d2.bias.data
+#RB1
+net_plus3.RB_3_conv1.weight.data=net_combine.a3_RB_3_conv1.weight.data  
+net_plus3.RB_3_conv1.bias.data=net_combine.a3_RB_3_conv1.bias.data
+net_plus3.RB_3_conv2.weight.data=net_combine.a3_RB_3_conv2.weight.data
+net_plus3.RB_3_conv2.bias.data=net_combine.a3_RB_3_conv2.bias.data
+net_plus3.RB_3_1d1.weight.data=net_combine.a3_RB_3_1d1.weight.data
+net_plus3.RB_3_1d1.bias.data=net_combine.a3_RB_3_1d1.bias.data
+net_plus3.RB_3_1d2.weight.data=net_combine.a3_RB_3_1d2.weight.data
+net_plus3.RB_3_1d2.bias.data=net_combine.a3_RB_3_1d2.bias.data
+#RB1
+net_plus3.RB_4_conv1.weight.data=net_combine.a3_RB_4_conv1.weight.data  
+net_plus3.RB_4_conv1.bias.data=net_combine.a3_RB_4_conv1.bias.data
+net_plus3.RB_4_conv2.weight.data=net_combine.a3_RB_4_conv2.weight.data
+net_plus3.RB_4_conv2.bias.data=net_combine.a3_RB_4_conv2.bias.data
+net_plus3.RB_4_1d1.weight.data=net_combine.a3_RB_4_1d1.weight.data
+net_plus3.RB_4_1d1.bias.data=net_combine.a3_RB_4_1d1.bias.data
+net_plus3.RB_4_1d2.weight.data=net_combine.a3_RB_4_1d2.weight.data
+net_plus3.RB_4_1d2.bias.data=net_combine.a3_RB_4_1d2.bias.data
+#RB1
+net_plus3.RB_5_conv1.weight.data=net_combine.a3_RB_5_conv1.weight.data  
+net_plus3.RB_5_conv1.bias.data=net_combine.a3_RB_5_conv1.bias.data
+net_plus3.RB_5_conv2.weight.data=net_combine.a3_RB_5_conv2.weight.data
+net_plus3.RB_5_conv2.bias.data=net_combine.a3_RB_5_conv2.bias.data
+net_plus3.RB_5_1d1.weight.data=net_combine.a3_RB_5_1d1.weight.data
+net_plus3.RB_5_1d1.bias.data=net_combine.a3_RB_5_1d1.bias.data
+net_plus3.RB_5_1d2.weight.data=net_combine.a3_RB_5_1d2.weight.data
+net_plus3.RB_5_1d2.bias.data=net_combine.a3_RB_5_1d2.bias.data
+#RB1
+net_plus3.RB_6_conv1.weight.data=net_combine.a3_RB_6_conv1.weight.data  
+net_plus3.RB_6_conv1.bias.data=net_combine.a3_RB_6_conv1.bias.data
+net_plus3.RB_6_conv2.weight.data=net_combine.a3_RB_6_conv2.weight.data
+net_plus3.RB_6_conv2.bias.data=net_combine.a3_RB_6_conv2.bias.data
+net_plus3.RB_6_1d1.weight.data=net_combine.a3_RB_6_1d1.weight.data
+net_plus3.RB_6_1d1.bias.data=net_combine.a3_RB_6_1d1.bias.data
+net_plus3.RB_6_1d2.weight.data=net_combine.a3_RB_6_1d2.weight.data
+net_plus3.RB_6_1d2.bias.data=net_combine.a3_RB_6_1d2.bias.data
+#RB1
+net_plus3.RB_7_conv1.weight.data=net_combine.a3_RB_7_conv1.weight.data  
+net_plus3.RB_7_conv1.bias.data=net_combine.a3_RB_7_conv1.bias.data
+net_plus3.RB_7_conv2.weight.data=net_combine.a3_RB_7_conv2.weight.data
+net_plus3.RB_7_conv2.bias.data=net_combine.a3_RB_7_conv2.bias.data
+net_plus3.RB_7_1d1.weight.data=net_combine.a3_RB_7_1d1.weight.data
+net_plus3.RB_7_1d1.bias.data=net_combine.a3_RB_7_1d1.bias.data
+net_plus3.RB_7_1d2.weight.data=net_combine.a3_RB_7_1d2.weight.data
+net_plus3.RB_7_1d2.bias.data=net_combine.a3_RB_7_1d2.bias.data
+#RB1
+net_plus3.RB_8_conv1.weight.data=net_combine.a3_RB_8_conv1.weight.data  
+net_plus3.RB_8_conv1.bias.data=net_combine.a3_RB_8_conv1.bias.data
+net_plus3.RB_8_conv2.weight.data=net_combine.a3_RB_8_conv2.weight.data
+net_plus3.RB_8_conv2.bias.data=net_combine.a3_RB_8_conv2.bias.data
+net_plus3.RB_8_1d1.weight.data=net_combine.a3_RB_8_1d1.weight.data
+net_plus3.RB_8_1d1.bias.data=net_combine.a3_RB_8_1d1.bias.data
+net_plus3.RB_8_1d2.weight.data=net_combine.a3_RB_8_1d2.weight.data
+net_plus3.RB_8_1d2.bias.data=net_combine.a3_RB_8_1d2.bias.data
+#RB1
+net_plus3.RB_9_conv1.weight.data=net_combine.a3_RB_9_conv1.weight.data  
+net_plus3.RB_9_conv1.bias.data=net_combine.a3_RB_9_conv1.bias.data
+net_plus3.RB_9_conv2.weight.data=net_combine.a3_RB_9_conv2.weight.data
+net_plus3.RB_9_conv2.bias.data=net_combine.a3_RB_9_conv2.bias.data
+net_plus3.RB_9_1d1.weight.data=net_combine.a3_RB_9_1d1.weight.data
+net_plus3.RB_9_1d1.bias.data=net_combine.a3_RB_9_1d1.bias.data
+net_plus3.RB_9_1d2.weight.data=net_combine.a3_RB_9_1d2.weight.data
+net_plus3.RB_9_1d2.bias.data=net_combine.a3_RB_9_1d2.bias.data
+#RB1
+net_plus3.RB_10_conv1.weight.data=net_combine.a3_RB_10_conv1.weight.data  
+net_plus3.RB_10_conv1.bias.data=net_combine.a3_RB_10_conv1.bias.data
+net_plus3.RB_10_conv2.weight.data=net_combine.a3_RB_10_conv2.weight.data
+net_plus3.RB_10_conv2.bias.data=net_combine.a3_RB_10_conv2.bias.data
+net_plus3.RB_10_1d1.weight.data=net_combine.a3_RB_10_1d1.weight.data
+net_plus3.RB_10_1d1.bias.data=net_combine.a3_RB_10_1d1.bias.data
+net_plus3.RB_10_1d2.weight.data=net_combine.a3_RB_10_1d2.weight.data
+net_plus3.RB_10_1d2.bias.data=net_combine.a3_RB_10_1d2.bias.data
+#RB1
+net_plus3.RB_11_conv1.weight.data=net_combine.a3_RB_11_conv1.weight.data  
+net_plus3.RB_11_conv1.bias.data=net_combine.a3_RB_11_conv1.bias.data
+net_plus3.RB_11_conv2.weight.data=net_combine.a3_RB_11_conv2.weight.data
+net_plus3.RB_11_conv2.bias.data=net_combine.a3_RB_11_conv2.bias.data
+net_plus3.RB_11_1d1.weight.data=net_combine.a3_RB_11_1d1.weight.data
+net_plus3.RB_11_1d1.bias.data=net_combine.a3_RB_11_1d1.bias.data
+net_plus3.RB_11_1d2.weight.data=net_combine.a3_RB_11_1d2.weight.data
+net_plus3.RB_11_1d2.bias.data=net_combine.a3_RB_11_1d2.bias.data
+#RB1
+net_plus3.RB_12_conv1.weight.data=net_combine.a3_RB_12_conv1.weight.data  
+net_plus3.RB_12_conv1.bias.data=net_combine.a3_RB_12_conv1.bias.data
+net_plus3.RB_12_conv2.weight.data=net_combine.a3_RB_12_conv2.weight.data
+net_plus3.RB_12_conv2.bias.data=net_combine.a3_RB_12_conv2.bias.data
+net_plus3.RB_12_1d1.weight.data=net_combine.a3_RB_12_1d1.weight.data
+net_plus3.RB_12_1d1.bias.data=net_combine.a3_RB_12_1d1.bias.data
+net_plus3.RB_12_1d2.weight.data=net_combine.a3_RB_12_1d2.weight.data
+net_plus3.RB_12_1d2.bias.data=net_combine.a3_RB_12_1d2.bias.data
+#RB1
+net_plus3.RB_13_conv1.weight.data=net_combine.a3_RB_13_conv1.weight.data  
+net_plus3.RB_13_conv1.bias.data=net_combine.a3_RB_13_conv1.bias.data
+net_plus3.RB_13_conv2.weight.data=net_combine.a3_RB_13_conv2.weight.data
+net_plus3.RB_13_conv2.bias.data=net_combine.a3_RB_13_conv2.bias.data
+net_plus3.RB_13_1d1.weight.data=net_combine.a3_RB_13_1d1.weight.data
+net_plus3.RB_13_1d1.bias.data=net_combine.a3_RB_13_1d1.bias.data
+net_plus3.RB_13_1d2.weight.data=net_combine.a3_RB_13_1d2.weight.data
+net_plus3.RB_13_1d2.bias.data=net_combine.a3_RB_13_1d2.bias.data
+#RB1
+net_plus3.RB_14_conv1.weight.data=net_combine.a3_RB_14_conv1.weight.data  
+net_plus3.RB_14_conv1.bias.data=net_combine.a3_RB_14_conv1.bias.data
+net_plus3.RB_14_conv2.weight.data=net_combine.a3_RB_14_conv2.weight.data
+net_plus3.RB_14_conv2.bias.data=net_combine.a3_RB_14_conv2.bias.data
+net_plus3.RB_14_1d1.weight.data=net_combine.a3_RB_14_1d1.weight.data
+net_plus3.RB_14_1d1.bias.data=net_combine.a3_RB_14_1d1.bias.data
+net_plus3.RB_14_1d2.weight.data=net_combine.a3_RB_14_1d2.weight.data
+net_plus3.RB_14_1d2.bias.data=net_combine.a3_RB_14_1d2.bias.data
+#RB1
+net_plus3.RB_15_conv1.weight.data=net_combine.a3_RB_15_conv1.weight.data  
+net_plus3.RB_15_conv1.bias.data=net_combine.a3_RB_15_conv1.bias.data
+net_plus3.RB_15_conv2.weight.data=net_combine.a3_RB_15_conv2.weight.data
+net_plus3.RB_15_conv2.bias.data=net_combine.a3_RB_15_conv2.bias.data
+net_plus3.RB_15_1d1.weight.data=net_combine.a3_RB_15_1d1.weight.data
+net_plus3.RB_15_1d1.bias.data=net_combine.a3_RB_15_1d1.bias.data
+net_plus3.RB_15_1d2.weight.data=net_combine.a3_RB_15_1d2.weight.data
+net_plus3.RB_15_1d2.bias.data=net_combine.a3_RB_15_1d2.bias.data
+#RB1
+net_plus3.RB_16_conv1.weight.data=net_combine.a3_RB_16_conv1.weight.data  
+net_plus3.RB_16_conv1.bias.data=net_combine.a3_RB_16_conv1.bias.data
+net_plus3.RB_16_conv2.weight.data=net_combine.a3_RB_16_conv2.weight.data
+net_plus3.RB_16_conv2.bias.data=net_combine.a3_RB_16_conv2.bias.data
+net_plus3.RB_16_1d1.weight.data=net_combine.a3_RB_16_1d1.weight.data
+net_plus3.RB_16_1d1.bias.data=net_combine.a3_RB_16_1d1.bias.data
+net_plus3.RB_16_1d2.weight.data=net_combine.a3_RB_16_1d2.weight.data
+net_plus3.RB_16_1d2.bias.data=net_combine.a3_RB_16_1d2.bias.data
+#end
+net_plus3.end_RB.weight.data=net_combine.a3_end_RB.weight.data
+net_plus3.end_RB.bias.data=net_combine.a3_end_RB.bias.data
+net_plus3.toR.weight.data=net_combine.a3_toR.weight.data
+net_plus3.toR.bias.data=net_combine.a3_toR.bias.dat1
+
+
+
+
+del net_combine
+
+
+
+
+
+
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+net_plus1.to(device)
+net_plus2.to(device)
+net_plus3.to(device)
+
+
+
+cwd = os.getcwd()
+
+LR_URL='2_LR_test'
+
+LR_set=torchvision.datasets.ImageFolder(root=LR_URL,transform=transforms.ToTensor())
+LR_loader=torch.utils.data.DataLoader(LR_set,batch_size=1,shuffle=False,num_workers=0)
+LR_loader=iter(LR_loader)
+
+os.mkdir('inverse_analysis')
+os.chdir('inverse_analysis')
+
+wd=os.getcwd()
+os.chdir(cwd)
+
+with torch.no_grad():
+   for i in range(len(LR_set)):
+       LR=LR_loader.next()[0]
+       _,_,x,y=LR.size()
+       temp=torch.nn.functional.unfold(LR,(int(x/2),int(y/2)),stride=(int(x/2),int(y/2)))
+       LR_tl=temp[:,:,0].reshape([1,3,int(x/2),int(y/2)]).to(device)
+       LR_tr=temp[:,:,1].reshape([1,3,int(x/2),int(y/2)]).to(device)
+       LR_bl=temp[:,:,2].reshape([1,3,int(x/2),int(y/2)]).to(device)
+       LR_br=temp[:,:,3].reshape([1,3,int(x/2),int(y/2)]).to(device)
+       LR_1=net_plus1(LR_tl).data
+       LR_2=net_plus1(LR_tr).data
+       LR_3=net_plus1(LR_bl).data
+       LR_4=net_plus1(LR_br).data
+       
+       temp1=torch.cat((LR_1,LR_2),3)
+       temp2=torch.cat((LR_3,LR_4),3)
+       temp=torch.cat((temp1,temp2),2).squeeze()
+       LR_after=temp.cpu()
+       LR_after = transforms.ToPILImage()(LR_after)
+       os.chdir(wd)
+       if i<9:
+            LR_after.save("2_LR_test_afterphase1_00"+str(i+1)+".png","PNG")
+       else:
+            LR_after.save("2_LR_test_afterphase1_0"+str(i+1)+".png","PNG")
+       os.chdir(cwd)
+       
+       
+       LR_1=net_plus2(LR_1).data
+       LR_2=net_plus2(LR_2).data
+       LR_3=net_plus2(LR_3).data
+       LR_4=net_plus2(LR_4).data
+       temp1=torch.cat((LR_1,LR_2),3)
+       temp2=torch.cat((LR_3,LR_4),3)
+       temp=torch.cat((temp1,temp2),2).squeeze()
+       LR_after=temp.cpu()
+       LR_after = transforms.ToPILImage()(LR_after)
+       os.chdir(wd)
+       if i<9:
+            LR_after.save("2_LR_test_afterphase2_00"+str(i+1)+".png","PNG")
+       else:
+            LR_after.save("2_LR_test_afterphase2_0"+str(i+1)+".png","PNG")
+       os.chdir(cwd)
+       
+       LR_1=net_plus3(LR_1).data
+       LR_2=net_plus3(LR_2).data
+       LR_3=net_plus3(LR_3).data
+       LR_4=net_plus3(LR_4).data
+       temp1=torch.cat((LR_1,LR_2),3)
+       temp2=torch.cat((LR_3,LR_4),3)
+       temp=torch.cat((temp1,temp2),2).squeeze()
+       LR_after=temp.cpu()
+       LR_after = transforms.ToPILImage()(LR_after)
+       os.chdir(wd)
+       if i<9:
+            LR_after.save("2_LR_test_afterphase3_00"+str(i+1)+".png","PNG")
+       else:
+            LR_after.save("2_LR_test_afterphase3_0"+str(i+1)+".png","PNG")
+       os.chdir(cwd)
+
+       print('done')
+       
+
+########################################################################################
