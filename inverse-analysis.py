@@ -9,7 +9,7 @@ import os
 
 
 net_combine=common.Net_combine()
-net_combine.load_state_dict(torch.load('net_combine1.pt'))
+net_combine.load_state_dict(torch.load('net_combine1_test.pt'))
 net_combine.eval()
 
 ####################################################################
@@ -503,8 +503,8 @@ LR_set=torchvision.datasets.ImageFolder(root=LR_URL,transform=transforms.ToTenso
 LR_loader=torch.utils.data.DataLoader(LR_set,batch_size=1,shuffle=False,num_workers=0)
 LR_loader=iter(LR_loader)
 
-os.mkdir('inverse_analysis')
-os.chdir('inverse_analysis')
+os.mkdir('inverse_analysis_test')
+os.chdir('inverse_analysis_test')
 
 wd=os.getcwd()
 os.chdir(cwd)
