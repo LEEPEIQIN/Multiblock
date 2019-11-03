@@ -166,7 +166,7 @@ net_plus1.RB_16_1d2.bias.data=net_combine.a1_RB_16_1d2.bias.data
 net_plus1.end_RB.weight.data=net_combine.a1_end_RB.weight.data
 net_plus1.end_RB.bias.data=net_combine.a1_end_RB.bias.data
 net_plus1.toR.weight.data=net_combine.a1_toR.weight.data
-net_plus1.toR.bias.data=net_combine.a1_toR.bias.dat1
+net_plus1.toR.bias.data=net_combine.a1_toR.bias.data
 ################################################################################################
 net_plus2=common.Net_plus()
 
@@ -320,7 +320,7 @@ net_plus2.RB_16_1d2.bias.data=net_combine.a2_RB_16_1d2.bias.data
 net_plus2.end_RB.weight.data=net_combine.a2_end_RB.weight.data
 net_plus2.end_RB.bias.data=net_combine.a2_end_RB.bias.data
 net_plus2.toR.weight.data=net_combine.a2_toR.weight.data
-net_plus2.toR.bias.data=net_combine.a2_toR.bias.dat1
+net_plus2.toR.bias.data=net_combine.a2_toR.bias.data
 
 ###################################################################################
 net_plus3=common.Net_plus()
@@ -475,7 +475,7 @@ net_plus3.RB_16_1d2.bias.data=net_combine.a3_RB_16_1d2.bias.data
 net_plus3.end_RB.weight.data=net_combine.a3_end_RB.weight.data
 net_plus3.end_RB.bias.data=net_combine.a3_end_RB.bias.data
 net_plus3.toR.weight.data=net_combine.a3_toR.weight.data
-net_plus3.toR.bias.data=net_combine.a3_toR.bias.dat1
+net_plus3.toR.bias.data=net_combine.a3_toR.bias.data
 
 
 
