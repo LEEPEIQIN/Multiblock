@@ -1,5 +1,7 @@
 # SR_multiblock
 
+For detial, please refer to the PDF file: report_LEE
+
 
 The porcedure follows the phased training step:
 
